@@ -24,11 +24,24 @@
     </style>
 </head>
 <body>
-    <iframe src="cv.pdf" onerror="this.style.display='none'; document.getElementById('download-link').style.display='block';"></iframe>
+    <iframe id="pdf-frame" src="cv.pdf"></iframe>
     
     <!-- Fallback download link if PDF fails to load -->
     <div class="fallback" id="download-link" style="display:none;">
         <p>If the PDF is not displaying, <a href="cv.pdf" download>click here to download the CV</a>.</p>
     </div>
+
+    <script>
+        // Check if the PDF loads
+        document.getElementById('pdf-frame').onload = function() {
+            // PDF loaded successfully
+        };
+
+        document.getElementById('pdf-frame').onerror = function() {
+            // If there's an error loading the PDF, show the download link
+            document.getElementById('pdf-frame').style.display = 'none';
+            document.getElementById('download-link').style.display = 'block';
+        };
+    </script>
 </body>
 </html>
