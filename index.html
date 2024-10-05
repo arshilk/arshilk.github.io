@@ -14,12 +14,21 @@
         iframe {
             display: block;
             width: 100%;
-            height: 100vh;
+            height: 100vh; /* Full height of the viewport */
             border: none;
+        }
+        .fallback {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://docs.google.com/viewer?url=https://drive.google.com/file/d/15LonKw3OEcYB_4Z1ysiCndf3eH4h3ucj/view?usp=sharing&embedded=true"></iframe>
+    <iframe src="cv.pdf" onerror="this.style.display='none'; document.getElementById('download-link').style.display='block';"></iframe>
+    
+    <!-- Fallback download link if PDF fails to load -->
+    <div class="fallback" id="download-link" style="display:none;">
+        <p>If the PDF is not displaying, <a href="cv.pdf" download>click here to download the CV</a>.</p>
+    </div>
 </body>
 </html>
