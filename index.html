@@ -4,25 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="facebook-domain-verification" content="fpi0pcjg7r0sbtakhb47tb32gsmnif" />
-    <title>My CV</title>
+    <title>Arshil Khan</title>
+    <meta name="description" content="Arshil Khan — sole proprietor (d/b/a Decibel Studios). Personal site and CV." />
     <style>
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #111;
+            background: #fff;
         }
-        embed, iframe {
+        header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+        }
+        header h1 {
+            margin: 0 0 4px 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        header p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+        header a { color: #0366d6; text-decoration: none; }
+        header a:hover { text-decoration: underline; }
+        .cv {
             display: block;
             border: none;
             width: 100%;
-            height: 100vh; /* 100% of the viewport height */
+            height: calc(100vh - 96px);
         }
     </style>
 </head>
 <body>
-    <embed src="Arshil_SDE_CV.pdf" type="application/pdf" />
-    <!-- Or you can use iframe instead: -->
-    <!-- <iframe src="Arshil_SDE_CV.pdf"></iframe> -->
+    <header>
+        <h1>Arshil Khan</h1>
+        <p>
+            Sole proprietor, doing business as <strong>Decibel Studios</strong>.
+            Owner and operator of <a href="https://dailyjobs.ai">DailyJobs.ai</a>.
+            Contact: <a href="mailto:me@arshilk.com">me@arshilk.com</a>.
+        </p>
+    </header>
+    <embed class="cv" src="Arshil_SDE_CV.pdf" type="application/pdf" />
 </body>
 </html>
