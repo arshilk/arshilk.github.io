@@ -25,6 +25,7 @@
     <ul>
         <li><a href="https://policies.google.com/privacy">Google Play Services</a></li>
         <li><a href="https://support.google.com/admob/answer/6128543">AdMob</a></li>
+        <li><a href="https://support.google.com/admob/answer/9012903">AdMob third-party ad partners list</a></li>
         <li><a href="https://firebase.google.com/policies/analytics">Firebase Analytics</a></li>
         <li><a href="https://firebase.google.com/support/privacy">Crashlytics</a></li>
     </ul>
@@ -36,10 +37,39 @@
         <li><strong>Foreground Service (Special Use - Audio):</strong> Used to keep the audio processing engine running in the background so the equalizer continues to apply effects even when the app is not in the foreground. A persistent notification is shown while the service is active.</li>
         <li><strong>Notifications:</strong> Used to display the foreground service status, the persistent enable/disable notification controls, and to deliver in-app status updates.</li>
         <li><strong>Vibrate:</strong> Used for tactile feedback when interacting with sliders, toggles, and other touch controls.</li>
-        <li><strong>Notification Listener (Recap feature, optional):</strong> If you enable the Recap feature, the app reads MediaSession metadata published by other apps (now-playing title, artist, album art, source application) to build your personal listening history, top songs, time-listened statistics, and liked tracks. This data is processed and stored entirely on your device. Notification content other than MediaSession metadata is not read, stored, or transmitted. The Recap feature is opt-in — Notification Access must be granted manually in the system settings, and revoking it immediately stops all collection. Uninstalling the app deletes the local Recap database.</li>
-        <li><strong>Advertising ID (AD_ID):</strong> Used by Google Mobile Ads (AdMob) to serve personalized advertisements to non-premium users in supported regions. Users in the European Economic Area, United Kingdom, Switzerland, and applicable US states are presented with a consent form managed by Google's User Messaging Platform (UMP) before personalized ads are served. Users can update their ad personalization choice at any time via the in-app "Privacy options" entry inside Help &amp; FAQ.</li>
+        <li><strong>Notification Listener (Recap feature, optional):</strong> Used by the Recap listening-summary feature to read MediaSession metadata published by other media apps. See the dedicated "Recap Feature and Notification Access" section below for full details on what is and isn't read, where it's stored, and how to revoke access.</li>
+        <li><strong>Advertising ID (AD_ID):</strong> Used by Google Mobile Ads (AdMob) to serve advertisements to non-premium users. See the dedicated "Advertising and Consent (AdMob &amp; Google UMP)" section below for details on personalized vs. non-personalized ads, the consent form shown in regulated regions, and how to change your choice later.</li>
         <li><strong>Billing:</strong> Used to process in-app purchases (monthly subscription, annual subscription, and lifetime premium upgrade) through Google Play Billing.</li>
     </ul>
+
+    <h2>Advertising and Consent (AdMob &amp; Google UMP)</h2>
+    <p>Non-premium users see advertisements served by <strong>Google AdMob</strong>. Premium users (monthly, annual, or lifetime) do not see any ads, and the ad SDK does not request data for them.</p>
+    <p>To serve ads, AdMob and its partners may process information including your advertising ID (AD_ID), IP address, approximate location derived from IP, device and browser identifiers, app activity (which screens an ad was shown on), and basic device characteristics. The full list of third-party ad partners that may receive this data is published and maintained by Google here: <a href="https://support.google.com/admob/answer/9012903">https://support.google.com/admob/answer/9012903</a>.</p>
+    <p>If you are located in the European Economic Area, the United Kingdom, Switzerland, or a US state with applicable privacy law, on first launch the app shows a consent form managed by Google's <strong>User Messaging Platform (UMP)</strong>. The form asks whether you consent to personalized advertising and to the third-party data processing described above.</p>
+    <ul>
+        <li>If you <strong>consent</strong>, AdMob may serve personalized ads. The legal basis for this processing is your consent.</li>
+        <li>If you <strong>decline</strong>, ads still appear but are served in a non-personalized "limited ads" mode that does not rely on personal-data profiling. The legal basis for this limited processing is the legitimate interest of supporting a free app, where permitted by local law.</li>
+        <li>If you are <strong>outside</strong> those regulated regions, no consent form is shown and ads serve in the standard AdMob configuration.</li>
+    </ul>
+    <p>You can change your ad-personalization choice at any time. Inside the app, open <strong>Settings → Help &amp; FAQ → EU Privacy Options</strong> to re-open Google's consent form and update your selections. This entry is only displayed in regions where the consent form applies. The choice you make there takes effect on subsequent ad requests.</p>
+
+    <h2>Recap Feature and Notification Access</h2>
+    <p>The <strong>Recap</strong> feature is an optional, opt-in listening summary similar to year-in-review screens you may have seen in other music apps. It shows your top songs, total time listened, liked tracks, and recent playback history across whichever music, video, or podcast apps you use.</p>
+    <p>To build Recap, the app declares a <code>NotificationListenerService</code> guarded by the <code>BIND_NOTIFICATION_LISTENER_SERVICE</code> system permission. The service is <strong>not</strong> active until you explicitly grant Notification Access in <strong>System Settings → Apps → Special app access → Notification access → AI Equalizer</strong>. Until that switch is enabled, no data is captured.</p>
+    <p>What the listener reads:</p>
+    <ul>
+        <li><strong>MediaSession metadata only:</strong> song / video / podcast title, artist (or album-artist), album, the package name of the source app (e.g. Spotify, YouTube), playback state (playing/paused), and the album-art bitmap published by that app.</li>
+        <li>Album-art bitmaps are scaled down to a maximum of 128 pixels on the longest edge before being held in memory, so a thumbnail can be shown in the now-playing chip.</li>
+    </ul>
+    <p>What the listener does <strong>not</strong> read:</p>
+    <ul>
+        <li>No message contents, email previews, chat notifications, banking alerts, calendar reminders, or any other non-media notification.</li>
+        <li>No notification text from apps that are not currently posting a MediaSession (the listener filters strictly to active media sessions and ignores everything else).</li>
+        <li>No contacts, no clipboard, no location, no microphone, no screen content.</li>
+    </ul>
+    <p><strong>Where the data lives:</strong> Recap stores playback events in a private JSON file (<code>recap.json</code>) inside the app's own internal storage on your device. Nothing from Recap is uploaded to Decibel Studios, Google, or any third party. The data never leaves your device.</p>
+    <p><strong>How to revoke:</strong> Open <strong>System Settings → Apps → Special app access → Notification access</strong> and toggle <strong>AI Equalizer</strong> off. The listener is immediately unbound and stops capturing new events. Previously-stored events remain on the device until you clear them or uninstall the app.</p>
+    <p><strong>How to clear what was already captured:</strong> Inside the app, open the <strong>Recap</strong> screen and tap the <strong>trash (Clear History)</strong> icon in the top bar. This deletes the entire local Recap database. Uninstalling AI Equalizer also deletes the Recap database along with all other app data.</p>
 
     <h2>Backup and Restore</h2>
     <p>The app provides a Backup &amp; Restore feature that exports your saved equalizer profiles, settings, and preferences to a file of your choice on your device or a cloud storage location you select (such as Google Drive). The app does not upload your backup data to any server controlled by Decibel Studios. Backup files contain only your local app configuration; no personally identifiable information is included.</p>
