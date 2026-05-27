@@ -4,359 +4,840 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="facebook-domain-verification" content="fpi0pcjg7r0sbtakhb47tb32gsmnif" />
-    <title>Decibel Studios — Software, AI & Cloud</title>
-    <meta name="description" content="Decibel Studios — independent software studio building AI-powered products, mobile apps, and cloud-native platforms." />
+    <title>Decibel Studios — Mobile Apps Built with Care</title>
+    <meta name="description" content="Decibel Studios — independent mobile studio building Android apps for audio, utility, and productivity. Trusted by users on Google Play." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --bg-alt: #f6f8fb;
-            --ink: #0b1220;
-            --ink-2: #3b4658;
-            --muted: #6b7689;
-            --accent: #2f6bff;
-            --accent-2: #7a4dff;
-            --line: #e6e9ef;
+            --bg: #0a0a0f;
+            --bg-card: #13131c;
+            --bg-card-2: #1a1a26;
+            --border: #26262e;
+            --border-2: #36363f;
+            --fg: #ffffff;
+            --fg-2: #b4b4c7;
+            --fg-3: #7a7a8f;
+            --purple: #a855f7;
+            --pink: #ec4899;
+            --gold: #f59e0b;
+            --blue: #3b82f6;
         }
         * { box-sizing: border-box; }
         html, body { margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--ink);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--fg);
             background: var(--bg);
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        a { color: inherit; text-decoration: none; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Background orbs */
+        .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--purple); top: -200px; right: -150px; }
+        .orb-2 { width: 500px; height: 500px; background: var(--pink); top: 30%; left: -200px; opacity: 0.3; }
+        .orb-3 { width: 450px; height: 450px; background: var(--gold); bottom: -100px; right: 20%; opacity: 0.2; }
 
         /* Nav */
         .nav {
             position: sticky; top: 0; z-index: 50;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: saturate(180%) blur(10px);
-            border-bottom: 1px solid var(--line);
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
         }
         .nav-inner {
             display: flex; align-items: center; justify-content: space-between;
-            height: 64px;
+            height: 72px;
         }
-        .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
-        .brand .dot {
-            width: 22px; height: 22px; border-radius: 6px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            box-shadow: 0 6px 16px rgba(47,107,255,0.35);
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -0.01em; font-size: 17px; }
+        .brand .logo {
+            width: 32px; height: 32px; border-radius: 9px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 900; color: #fff;
         }
-        .nav-links { display: flex; gap: 28px; }
-        .nav-links a { color: var(--ink-2); font-size: 14px; font-weight: 500; }
-        .nav-links a:hover { color: var(--ink); text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a {
+            color: var(--fg-2); font-size: 14px; font-weight: 500;
+            transition: color .2s ease;
+        }
+        .nav-links a:hover { color: var(--fg); }
         .btn {
-            display: inline-block; padding: 10px 18px;
-            background: var(--ink); color: #fff; border-radius: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 20px; border-radius: 10px;
             font-size: 14px; font-weight: 600;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+            cursor: pointer; border: none;
         }
-        .btn:hover { text-decoration: none; opacity: 0.9; }
+        .btn:hover { transform: translateY(-1px); }
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            box-shadow: 0 8px 24px rgba(47,107,255,0.35);
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
         }
-        .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+        .btn-primary:hover { box-shadow: 0 14px 36px rgba(168, 85, 247, 0.5); }
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--fg);
+            border: 1px solid var(--border-2);
+        }
+        .btn-ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--purple); }
 
         /* Hero */
-        .hero { padding: 96px 0 80px; position: relative; overflow: hidden; }
-        .hero::before {
-            content: ""; position: absolute; inset: -200px -200px auto auto;
-            width: 700px; height: 700px; border-radius: 50%;
-            background: radial-gradient(closest-side, rgba(122,77,255,0.18), transparent 70%);
-            z-index: -1;
-        }
-        .hero::after {
-            content: ""; position: absolute; inset: auto auto -200px -200px;
-            width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(closest-side, rgba(47,107,255,0.18), transparent 70%);
-            z-index: -1;
+        .hero { padding: 100px 0 80px; position: relative; z-index: 1; }
+        .hero-grid {
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
         }
         .eyebrow {
-            display: inline-block; font-size: 12px; font-weight: 600;
-            color: var(--accent); background: rgba(47,107,255,0.08);
-            padding: 6px 12px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase;
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 600;
+            color: var(--fg-2);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 999px;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .eyebrow .pulse {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--purple);
+            box-shadow: 0 0 12px var(--purple);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
         h1.title {
-            font-size: clamp(40px, 6vw, 68px);
-            line-height: 1.05; letter-spacing: -0.025em;
-            margin: 18px 0 20px; font-weight: 800;
+            font-size: clamp(40px, 5.5vw, 68px);
+            line-height: 1.05; letter-spacing: -0.03em;
+            margin: 24px 0 24px; font-weight: 800;
         }
         h1.title .grad {
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            background: linear-gradient(135deg, var(--purple), var(--pink), var(--gold));
             -webkit-background-clip: text; background-clip: text; color: transparent;
         }
-        .lede { font-size: 19px; color: var(--ink-2); max-width: 720px; margin: 0 0 32px; }
-        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+        .lede {
+            font-size: 18px; color: var(--fg-2);
+            max-width: 540px; margin: 0 0 36px;
+        }
+        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+
+        /* Hero stats */
+        .stats { display: flex; gap: 48px; flex-wrap: wrap; }
+        .stat .num {
+            font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .stat .lbl { font-size: 13px; color: var(--fg-3); font-weight: 500; }
+
+        /* Hero phone mockup */
+        .phone-wrap {
+            position: relative; display: flex; justify-content: center;
+        }
+        .phone {
+            width: 280px; aspect-ratio: 9/19;
+            background: linear-gradient(135deg, #1a1a26, #0a0a0f);
+            border: 2px solid var(--border-2);
+            border-radius: 36px;
+            padding: 14px;
+            box-shadow:
+                0 30px 80px rgba(168, 85, 247, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            position: relative;
+        }
+        .phone-notch {
+            position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 22px;
+            background: #000; border-radius: 0 0 14px 14px;
+            z-index: 2;
+        }
+        .phone-screen {
+            background: linear-gradient(160deg, #0d0d18, #1a1a26);
+            border-radius: 26px;
+            height: 100%; padding: 44px 18px 18px;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+        }
+        .phone-time {
+            text-align: center; font-size: 13px; font-weight: 600;
+            color: var(--fg); margin-bottom: 18px;
+        }
+        .phone-app-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+        }
+        .phone-app {
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+        .phone-app .icon {
+            width: 50px; height: 50px; border-radius: 13px;
+            object-fit: cover;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .phone-app .name { font-size: 9px; color: var(--fg-2); text-align: center; }
+
+        @media (max-width: 880px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .phone-wrap { order: -1; }
+            .phone { width: 220px; }
+            .nav-links { display: none; }
+            .stats { gap: 28px; }
+            .stat .num { font-size: 28px; }
+        }
 
         /* Sections */
-        section { padding: 80px 0; }
-        .section-head { max-width: 720px; margin: 0 0 48px; }
-        .section-head .eyebrow { margin-bottom: 14px; }
+        section { padding: 100px 0; position: relative; z-index: 1; }
+        .section-head {
+            max-width: 700px; margin: 0 auto 56px; text-align: center;
+        }
+        .section-head .eyebrow { margin-bottom: 18px; }
         h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            line-height: 1.15; letter-spacing: -0.02em;
-            margin: 0 0 14px; font-weight: 800;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.15; letter-spacing: -0.025em;
+            margin: 0 0 16px; font-weight: 800;
         }
-        .section-head p { font-size: 17px; color: var(--ink-2); margin: 0; }
+        h2 .grad {
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .section-head p { font-size: 17px; color: var(--fg-2); margin: 0; }
 
-        .bg-alt { background: var(--bg-alt); }
+        /* Filter tabs */
+        .filters {
+            display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .filter {
+            padding: 10px 20px; border-radius: 999px;
+            font-size: 14px; font-weight: 500;
+            color: var(--fg-2);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        .filter:hover { color: var(--fg); border-color: var(--border-2); }
+        .filter.active {
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+        }
 
-        /* Services grid */
-        .grid { display: grid; gap: 20px; }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-2 { grid-template-columns: repeat(2, 1fr); }
-        @media (max-width: 880px) {
-            .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        /* App grid */
+        .app-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
         }
-        .card {
-            background: #fff; border: 1px solid var(--line); border-radius: 14px;
-            padding: 28px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 40px rgba(11,18,32,0.08);
-            border-color: #d8dde7;
-        }
-        .icon {
-            width: 44px; height: 44px; border-radius: 10px;
-            background: linear-gradient(135deg, rgba(47,107,255,0.12), rgba(122,77,255,0.12));
-            color: var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; margin-bottom: 16px;
-        }
-        .card h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
-        .card p { margin: 0; color: var(--ink-2); font-size: 15px; }
-
-        /* Products */
-        .product {
-            display: flex; gap: 28px; align-items: center;
-            background: #fff; border: 1px solid var(--line); border-radius: 16px;
+        @media (max-width: 1000px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .app-grid { grid-template-columns: 1fr; } }
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
             padding: 28px;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
-        .product .thumb {
-            flex: 0 0 96px; height: 96px; border-radius: 18px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        .app-card::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(168,85,247,0.08), transparent 50%);
+            opacity: 0; transition: opacity .25s ease;
+            pointer-events: none;
+        }
+        .app-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.15);
+        }
+        .app-card:hover::before { opacity: 1; }
+        .app-card .app-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; position: relative; }
+        .app-icon {
+            width: 60px; height: 60px; border-radius: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        .app-card h3 { margin: 0 0 4px; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+        .app-card .tag { font-size: 13px; color: var(--fg-3); font-weight: 500; }
+        .app-card .desc { font-size: 14px; color: var(--fg-2); margin: 0 0 20px; flex-grow: 1; position: relative; }
+        .app-meta {
+            display: flex; gap: 16px; margin-bottom: 20px;
+            font-size: 13px; color: var(--fg-3); position: relative;
+        }
+        .app-meta .item { display: flex; align-items: center; gap: 6px; }
+        .app-meta .star { color: var(--gold); }
+        .app-links { display: flex; gap: 8px; position: relative; flex-wrap: wrap; }
+        .app-link {
+            padding: 8px 14px; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            border: 1px solid var(--border-2);
+            color: var(--fg-2);
+            transition: all .2s ease;
+        }
+        .app-link:hover { color: var(--fg); border-color: var(--purple); background: rgba(168,85,247,0.08); }
+        .app-link.primary {
+            background: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.35);
+            color: #d8b4fe;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        @media (max-width: 880px) { .features-grid { grid-template-columns: 1fr; } }
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .feature:hover { border-color: var(--border-2); transform: translateY(-2px); }
+        .feature .ficon {
+            width: 48px; height: 48px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 800; font-size: 28px;
-            box-shadow: 0 12px 28px rgba(47,107,255,0.35);
+            font-size: 22px; margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(236,72,153,0.18));
+            color: #d8b4fe;
         }
-        .product h3 { margin: 0 0 6px; font-size: 20px; }
-        .product p { margin: 0 0 10px; color: var(--ink-2); }
-        @media (max-width: 600px) { .product { flex-direction: column; align-items: flex-start; } }
+        .feature h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+        .feature p { margin: 0; color: var(--fg-2); font-size: 14px; }
 
-        /* Tech list */
-        .pills { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill {
-            padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
-            font-size: 14px; color: var(--ink-2); background: #fff;
+        /* About */
+        .about-grid {
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
         }
+        @media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+        .about-grid h2 { text-align: left; }
+        .about-grid .lede { max-width: none; }
+        .about-list { list-style: none; padding: 0; margin: 28px 0 0; }
+        .about-list li {
+            padding: 12px 0; border-bottom: 1px solid var(--border);
+            color: var(--fg-2); font-size: 15px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .about-list li:last-child { border-bottom: none; }
+        .about-list .check {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 12px; font-weight: 800; flex-shrink: 0;
+        }
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            position: relative; overflow: hidden;
+        }
+        .about-card::before {
+            content: ""; position: absolute; top: -100px; right: -100px;
+            width: 300px; height: 300px; border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(168,85,247,0.25), transparent 70%);
+        }
+        .about-stats {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+            position: relative;
+        }
+        .about-stat .num {
+            font-size: 38px; font-weight: 800; letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .about-stat .lbl { font-size: 13px; color: var(--fg-3); }
 
-        /* CTA */
-        .cta {
-            background: linear-gradient(135deg, #0b1220, #1a2440);
-            color: #fff; border-radius: 20px;
-            padding: 56px; text-align: center; margin: 0 0 80px;
+        /* Contact */
+        .contact-grid {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: stretch;
         }
-        .cta h2 { color: #fff; margin-bottom: 10px; }
-        .cta p { color: #c7cee0; margin: 0 0 24px; }
+        @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+        .field label { font-size: 13px; color: var(--fg-2); font-weight: 500; }
+        .field input, .field select, .field textarea {
+            background: var(--bg);
+            border: 1px solid var(--border-2);
+            color: var(--fg);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color .2s ease;
+        }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            outline: none; border-color: var(--purple);
+        }
+        .field textarea { resize: vertical; min-height: 120px; }
+        .contact-info {
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: border-color .2s ease, transform .2s ease;
+        }
+        .contact-item:hover { border-color: var(--border-2); transform: translateY(-2px); }
+        .contact-item .ci-icon {
+            width: 42px; height: 42px; border-radius: 11px;
+            background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(236,72,153,0.2));
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 12px; font-size: 20px;
+        }
+        .contact-item h4 { margin: 0 0 4px; font-size: 15px; }
+        .contact-item p { margin: 0; font-size: 13px; color: var(--fg-3); }
+        .contact-item a { color: var(--fg-2); font-size: 14px; }
+        .contact-item a:hover { color: #d8b4fe; }
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--line); padding: 32px 0;
-            color: var(--muted); font-size: 14px;
+            border-top: 1px solid var(--border);
+            padding: 60px 0 32px;
+            position: relative; z-index: 1;
+            margin-top: 40px;
         }
-        .foot-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-        footer a { color: var(--ink-2); }
+        .foot-grid {
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 700px) { .foot-grid { grid-template-columns: 1fr; gap: 28px; } }
+        .foot-brand p { color: var(--fg-3); font-size: 14px; max-width: 320px; margin: 16px 0 0; }
+        .foot-col h5 {
+            font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--fg-3); margin: 0 0 18px; font-weight: 600;
+        }
+        .foot-col a {
+            display: block; color: var(--fg-2); font-size: 14px; margin-bottom: 12px;
+            transition: color .2s ease;
+        }
+        .foot-col a:hover { color: var(--fg); }
+        .foot-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+            font-size: 13px; color: var(--fg-3);
+        }
+        .foot-bottom a { color: var(--fg-2); }
+        .foot-bottom a:hover { color: var(--fg); }
     </style>
 </head>
 <body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
     <nav class="nav">
         <div class="wrap nav-inner">
-            <a href="#top" class="brand"><span class="dot"></span> Decibel Studios</a>
+            <a href="#top" class="brand">
+                <span class="logo">D</span>
+                Decibel Studios
+            </a>
             <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#products">Products</a>
-                <a href="#technologies">Technologies</a>
+                <a href="#apps">Apps</a>
+                <a href="#features">Features</a>
                 <a href="#about">About</a>
-                <a href="/resume">Resume</a>
+                <a href="#contact">Contact</a>
             </div>
-            <a class="btn btn-primary" href="#contact">Contact</a>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
         </div>
     </nav>
 
     <header id="top" class="hero">
         <div class="wrap">
-            <span class="eyebrow">Independent Software Studio</span>
-            <h1 class="title">We build <span class="grad">AI products</span><br/>that ship and scale.</h1>
-            <p class="lede">
-                Decibel Studios is an independent software studio crafting AI-powered products,
-                mobile apps, and cloud-native platforms. From first prototype to production at scale,
-                we design, build, and operate software end-to-end.
-            </p>
-            <div class="hero-ctas">
-                <a class="btn btn-primary" href="#contact">Start a project</a>
-                <a class="btn btn-ghost" href="#products">See our work</a>
+            <div class="hero-grid">
+                <div>
+                    <span class="eyebrow"><span class="pulse"></span> Solo Indie Developer</span>
+                    <h1 class="title">Android apps,<br/>crafted with <span class="grad">care</span>.</h1>
+                    <p class="lede">
+                        Hi, I'm <strong style="color: var(--fg);">Arshil Khan</strong> — I design, build, and ship Android apps under the name
+                        <strong style="color: var(--fg);">Decibel Studios</strong>. It's a working name, not a company:
+                        every app here is made and supported by one person, end to end.
+                    </p>
+                    <div class="hero-ctas">
+                        <a class="btn btn-primary" href="#apps">Explore Our Apps →</a>
+                        <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+                    </div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="num">6+</div>
+                            <div class="lbl">Published Apps</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">★ 4.5</div>
+                            <div class="lbl">Avg Play Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">2016</div>
+                            <div class="lbl">Active Since</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-wrap">
+                    <div class="phone">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="phone-time">9:41</div>
+                            <div class="phone-app-grid">
+                                <div class="phone-app"><img class="icon" src="assets/apps/aiequalizer.png" alt=""><div class="name">Equalizer</div></div>
+                                <div class="phone-app"><img class="icon" src="assets/apps/aimusicplayer.png" alt=""><div class="name">Music</div></div>
+                                <div class="phone-app"><img class="icon" src="assets/apps/notch.png" alt=""><div class="name">Notch</div></div>
+                                <div class="phone-app"><img class="icon" src="assets/apps/sleepingsounds.png" alt=""><div class="name">Sleep</div></div>
+                                <div class="phone-app"><img class="icon" src="assets/apps/blackscreen.png" alt=""><div class="name">BlackScreen</div></div>
+                                <div class="phone-app"><img class="icon" src="assets/apps/dailyjobs.png" alt=""><div class="name">DailyJobs</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <section id="services">
+    <section id="apps">
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">What we do</span>
-                <h2>Services</h2>
-                <p>Full-stack product engineering, from idea to launch — and every release after.</p>
+                <span class="eyebrow">Our Portfolio</span>
+                <h2>Apps built for <span class="grad">real use</span></h2>
+                <p>A growing lineup of Android apps designed around a single principle: do one thing well, and stay out of the way.</p>
             </div>
-            <div class="grid grid-3">
-                <div class="card">
-                    <div class="icon">◈</div>
-                    <h3>AI & Machine Learning</h3>
-                    <p>LLM-powered products, intelligent agents, retrieval pipelines, and applied ML for real customer workflows.</p>
+            <div class="filters">
+                <button class="filter active" data-filter="all">All Apps</button>
+                <button class="filter" data-filter="audio">Audio</button>
+                <button class="filter" data-filter="utility">Utility</button>
+                <button class="filter" data-filter="productivity">Productivity</button>
+            </div>
+            <div class="app-grid">
+                <div class="app-card" data-cat="audio">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/aiequalizer.png" alt="AI Equalizer icon" loading="lazy">
+                        <div>
+                            <h3>AI Equalizer</h3>
+                            <div class="tag">Smart Audio Tuning</div>
+                        </div>
+                    </div>
+                    <p class="desc">Adaptive equalizer that learns your listening habits and applies the right tuning for each track and genre automatically.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> 4.5</div>
+                        <div class="item">Android</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.aiequilizer&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="/privacy_aiequilizer.html">Privacy</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="icon">◐</div>
-                    <h3>Mobile Apps</h3>
-                    <p>Native iOS and Android apps designed for the App Store top charts — fast, polished, and monetizable.</p>
+
+                <div class="app-card" data-cat="audio">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/aimusicplayer.png" alt="AI Music Player icon" loading="lazy">
+                        <div>
+                            <h3>AI Music Player</h3>
+                            <div class="tag">Intelligent Playback</div>
+                        </div>
+                    </div>
+                    <p class="desc">Lightweight music player with adaptive playback, background scrobbling, and seamless library access on Android Auto.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> New</div>
+                        <div class="item">Android</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.aimusicplayer&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="/privacy_aimusicplayer.html">Privacy</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="icon">◑</div>
-                    <h3>Web Platforms</h3>
-                    <p>Modern web apps and dashboards built on React, Next.js, and TypeScript — accessible, responsive, and fast.</p>
+
+                <div class="app-card" data-cat="audio">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/sleepingsounds.png" alt="Sleeping Sounds icon" loading="lazy">
+                        <div>
+                            <h3>Sleeping Sounds</h3>
+                            <div class="tag">Rest & Relax</div>
+                        </div>
+                    </div>
+                    <p class="desc">Curated nature, ambient, and binaural sound mixes for sleep, focus, and meditation — with offline asset packs.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> 4.5</div>
+                        <div class="item">Android</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.sleepingsounds&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="/privacy_sleeping_sounds.html">Privacy</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="icon">▲</div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Production-grade infrastructure on AWS and GCP with CI/CD, observability, and cost-aware architecture.</p>
+
+                <div class="app-card" data-cat="utility">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/notch.png" alt="Notch icon" loading="lazy">
+                        <div>
+                            <h3>Notch</h3>
+                            <div class="tag">Interactive Notch Bar</div>
+                        </div>
+                    </div>
+                    <p class="desc">Turn the area around your camera cutout into a flexible action bar — quick gestures, lyrics, and live activities.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> 4.5</div>
+                        <div class="item">Android</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.notch&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="/privacy_notch.html">Privacy</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="icon">◆</div>
-                    <h3>Product Design</h3>
-                    <p>UX research, interface design, and prototyping that turns rough ideas into shippable, well-defined products.</p>
+
+                <div class="app-card" data-cat="utility">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/blackscreen.png" alt="BlackScreen icon" loading="lazy">
+                        <div>
+                            <h3>BlackScreen</h3>
+                            <div class="tag">Screen Privacy</div>
+                        </div>
+                    </div>
+                    <p class="desc">Privacy-first black screen and biometric lock companion — keep your screen yours in public and shared spaces.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> 4.5</div>
+                        <div class="item">Android</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.blackplay&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="/privacy_blackscreen.html">Privacy</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="icon">●</div>
-                    <h3>Consulting</h3>
-                    <p>Technical leadership, architecture review, and pragmatic guidance for teams scaling from zero to one.</p>
+
+                <div class="app-card" data-cat="productivity">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/apps/dailyjobs.png" alt="DailyJobs.ai icon" loading="lazy">
+                        <div>
+                            <h3>DailyJobs.ai</h3>
+                            <div class="tag">AI Job Discovery</div>
+                        </div>
+                    </div>
+                    <p class="desc">AI-powered job search with auto-apply, CV review, and ATS scoring — find roles that match you and apply with one tap.</p>
+                    <div class="app-meta">
+                        <div class="item"><span class="star">★</span> 4.6</div>
+                        <div class="item">Android · Web</div>
+                    </div>
+                    <div class="app-links">
+                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=ai.dailyjobs.app&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+                        <a class="app-link" href="https://dailyjobs.ai" target="_blank" rel="noopener">Website</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="products" class="bg-alt">
+    <section id="features">
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">Our work</span>
-                <h2>Products</h2>
-                <p>A growing portfolio of apps and platforms built and operated by Decibel Studios.</p>
+                <span class="eyebrow">Why Decibel</span>
+                <h2>Built with <span class="grad">excellence</span></h2>
+                <p>Every app we ship is crafted with the same hands-on engineering and product care.</p>
             </div>
-            <div class="grid grid-2">
-                <div class="product">
-                    <div class="thumb">DJ</div>
-                    <div>
-                        <h3>DailyJobs.ai</h3>
-                        <p>AI-powered job discovery and application platform.</p>
-                        <a href="https://dailyjobs.ai">dailyjobs.ai →</a>
-                    </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="ficon">◆</div>
+                    <h3>Quality First</h3>
+                    <p>Each app is profiled, optimized, and tested across real Android devices before it ships — smooth animations, low memory, no jank.</p>
                 </div>
-                <div class="product">
-                    <div class="thumb">♪</div>
-                    <div>
-                        <h3>AI Music Player</h3>
-                        <p>Intelligent music app with adaptive playback and discovery.</p>
-                        <a href="/privacy_aimusicplayer.html">Privacy →</a>
-                    </div>
+                <div class="feature">
+                    <div class="ficon">◈</div>
+                    <h3>Privacy Focused</h3>
+                    <p>Your data stays on your device. We don't sell or share personal information — every privacy policy spells out exactly what's collected.</p>
                 </div>
-                <div class="product">
-                    <div class="thumb">≡</div>
-                    <div>
-                        <h3>AI Equalizer</h3>
-                        <p>Smart equalizer that learns and adapts to your listening.</p>
-                        <a href="/privacy_aiequilizer.html">Privacy →</a>
-                    </div>
+                <div class="feature">
+                    <div class="ficon">▲</div>
+                    <h3>Lightweight & Fast</h3>
+                    <p>Small APK sizes, minimal background work, and battery-aware design. Our apps respect your phone's resources.</p>
                 </div>
-                <div class="product">
-                    <div class="thumb">◼</div>
-                    <div>
-                        <h3>BlackScreen & Utilities</h3>
-                        <p>Lightweight utility apps shipped under the Decibel Studios label.</p>
-                        <a href="/privacy_blackscreen.html">Privacy →</a>
-                    </div>
+                <div class="feature">
+                    <div class="ficon">●</div>
+                    <h3>Regular Updates</h3>
+                    <p>Continuous improvement based on user feedback and new Android platform features — stability and polish ship every release.</p>
+                </div>
+                <div class="feature">
+                    <div class="ficon">◐</div>
+                    <h3>Thoughtful Design</h3>
+                    <p>Clean, accessible interfaces that follow Material guidelines and work well in light and dark mode out of the box.</p>
+                </div>
+                <div class="feature">
+                    <div class="ficon">◑</div>
+                    <h3>Responsive Support</h3>
+                    <p>Every app has in-app support chat. Real responses from the team that built it — usually within a day.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="technologies">
+    <section id="about">
         <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Stack</span>
-                <h2>Technologies</h2>
-                <p>The tools we reach for — chosen for reliability, velocity, and long-term maintainability.</p>
+            <div class="about-grid">
+                <div>
+                    <span class="eyebrow">About</span>
+                    <h2>A one-person studio with <span class="grad">operator DNA</span></h2>
+                    <p class="lede">
+                        Decibel Studios is the name I publish my Android apps under — it's not a company, just a working
+                        name for my indie projects. Everything you see here is designed, engineered, and supported by me,
+                        Arshil Khan. No teams, no investors, no roadmap committees.
+                    </p>
+                    <ul class="about-list">
+                        <li><span class="check">✓</span> Six published Android apps across audio, utility, and productivity</li>
+                        <li><span class="check">✓</span> Active on Google Play since 2016</li>
+                        <li><span class="check">✓</span> Privacy-first — no third-party tracking beyond what's disclosed</li>
+                        <li><span class="check">✓</span> Solo-built and personally supported by the same person who shipped it</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="num">6+</div>
+                            <div class="lbl">Apps in Production</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="num">★ 4.5</div>
+                            <div class="lbl">Avg User Rating</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="num">9+</div>
+                            <div class="lbl">Years Active</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="num">1</div>
+                            <div class="lbl">Person Studio</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="pills">
-                <span class="pill">Swift / SwiftUI</span>
-                <span class="pill">Kotlin</span>
-                <span class="pill">React</span>
-                <span class="pill">Next.js</span>
-                <span class="pill">TypeScript</span>
-                <span class="pill">Node.js</span>
-                <span class="pill">Python</span>
-                <span class="pill">FastAPI</span>
-                <span class="pill">PostgreSQL</span>
-                <span class="pill">Redis</span>
-                <span class="pill">AWS</span>
-                <span class="pill">GCP</span>
-                <span class="pill">Docker</span>
-                <span class="pill">Kubernetes</span>
-                <span class="pill">OpenAI / Anthropic APIs</span>
-                <span class="pill">LangChain</span>
-                <span class="pill">PyTorch</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="bg-alt">
-        <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">About</span>
-                <h2>An independent studio with operator DNA.</h2>
-                <p>
-                    Decibel Studios is the trade name of Arshil Khan, a software engineer and sole proprietor.
-                    We don't just build software — we ship, operate, and grow it. Every product we work on
-                    benefits from the same hands-on engineering, product, and operating experience used to
-                    build our own apps.
-                </p>
-            </div>
-            <p><a href="/resume">View resume →</a></p>
         </div>
     </section>
 
     <section id="contact">
         <div class="wrap">
-            <div class="cta">
-                <h2>Have a project in mind?</h2>
-                <p>Tell us what you're building. We'll get back to you within a day.</p>
-                <a class="btn btn-primary" href="mailto:me@arshilk.com">me@arshilk.com</a>
+            <div class="section-head">
+                <span class="eyebrow">Get In Touch</span>
+                <h2>Let's <span class="grad">connect</span></h2>
+                <p>Have feedback, a support question, or a business inquiry? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-card" action="mailto:me@arshilk.com" method="post" enctype="text/plain">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your name" required>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option>App Support</option>
+                            <option>Business Inquiry</option>
+                            <option>Feedback</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Send Message →</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="ci-icon">✉</div>
+                        <h4>Email Us</h4>
+                        <p style="margin-bottom: 8px;">For support or inquiries</p>
+                        <a href="mailto:me@arshilk.com">me@arshilk.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon">▶</div>
+                        <h4>Google Play</h4>
+                        <p style="margin-bottom: 8px;">All our apps in one place</p>
+                        <a href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">View Developer Page →</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon">⏱</div>
+                        <h4>Response Time</h4>
+                        <p>We typically respond within 24–48 hours. For urgent app issues, include your device model and app version.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="wrap foot-inner">
-            <div>© <span id="y"></span> Decibel Studios · Arshil Khan, sole proprietor.</div>
-            <div>
-                <a href="/privacy.html">Privacy</a> ·
-                <a href="/resume">Resume</a> ·
-                <a href="mailto:me@arshilk.com">Contact</a>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div class="foot-brand">
+                    <a href="#top" class="brand">
+                        <span class="logo">D</span>
+                        Decibel Studios
+                    </a>
+                    <p>The working name for the indie Android apps I build solo. Not a company — just one developer (Arshil Khan) shipping focused apps for audio, utility, and productivity.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>Quick Links</h5>
+                    <a href="#apps">Apps</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="/resume">Resume</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Connect</h5>
+                    <a href="mailto:me@arshilk.com">me@arshilk.com</a>
+                    <a href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">Google Play</a>
+                    <a href="https://www.youtube.com/@decibel.studios" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://www.instagram.com/decibel_studios_" target="_blank" rel="noopener">Instagram</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <div>© <span id="y"></span> Arshil Khan, publishing as Decibel Studios. All rights reserved.</div>
+                <div>
+                    <a href="/privacy.html">Privacy Policy</a>
+                </div>
             </div>
         </div>
     </footer>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+    <script>
+        document.getElementById('y').textContent = new Date().getFullYear();
+
+        const filters = document.querySelectorAll('.filter');
+        const cards = document.querySelectorAll('.app-card');
+        filters.forEach(f => {
+            f.addEventListener('click', () => {
+                filters.forEach(x => x.classList.remove('active'));
+                f.classList.add('active');
+                const cat = f.dataset.filter;
+                cards.forEach(c => {
+                    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
