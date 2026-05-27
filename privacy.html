@@ -30,6 +30,17 @@
         <li><a href="https://firebase.google.com/support/privacy">Crashlytics</a></li>
     </ul>
 
+    <h2>Device Permissions</h2>
+    <p>The app may request the following device permissions to provide its core functionality:</p>
+    <ul>
+        <li><strong>Modify Audio Settings:</strong> Required to apply the equalizer, bass boost, virtualizer, loudness, limiter, noise gate, compressor, and multiband-compression effects to the system audio output. No audio content is captured, recorded, or transmitted.</li>
+        <li><strong>Foreground Service (Special Use - Audio):</strong> Used to keep the audio processing engine running in the background so the equalizer continues to apply effects even when the app is not in the foreground. A persistent notification is shown while the service is active.</li>
+        <li><strong>Notifications:</strong> Used to display the foreground service status, the persistent enable/disable notification controls, and to deliver in-app status updates.</li>
+        <li><strong>Vibrate:</strong> Used for tactile feedback when interacting with sliders, toggles, and other touch controls.</li>
+        <li><strong>Advertising ID (AD_ID):</strong> Used by Google Mobile Ads (AdMob) to serve advertisements to non-premium users. See the dedicated "Advertising and Consent (AdMob &amp; Google UMP)" section below for details on personalized vs. non-personalized ads, the consent form shown in regulated regions, and how to change your choice later.</li>
+        <li><strong>Billing:</strong> Used to process in-app purchases through Google Play Billing.</li>
+    </ul>
+
     <h2>Advertising and Consent (AdMob &amp; Google UMP)</h2>
     <p>Non-premium users see advertisements served by <strong>Google AdMob</strong>. Premium users do not see any ads, and the ad SDK does not request data for them.</p>
     <p>To serve ads, AdMob and its partners may process information including your advertising ID (AD_ID), IP address, approximate location derived from IP, device and browser identifiers, app activity (which screens an ad was shown on), and basic device characteristics. The full list of third-party ad partners that may receive this data is published and maintained by Google here: <a href="https://support.google.com/admob/answer/9012903">https://support.google.com/admob/answer/9012903</a>.</p>
@@ -40,6 +51,9 @@
         <li>If you are <strong>outside</strong> those regulated regions, no consent form is shown and ads serve in the standard AdMob configuration.</li>
     </ul>
     <p>You can change your ad-personalization choice at any time. Inside the app, open <strong>Settings → Help &amp; FAQ → EU Privacy Options</strong> to re-open Google's consent form and update your selections. This entry is only displayed in regions where the consent form applies. The choice you make there takes effect on subsequent ad requests.</p>
+
+    <h2>In-App Purchases</h2>
+    <p>The app offers in-app purchases through Google Play Billing. All payment processing is handled by Google Play. We do not collect, store, or have access to your payment information.</p>
 
     <h2>Log Data</h2>
     <p>We want to inform you that whenever you use our Service, in a case of an error in the app, we collect data and information (through third-party products) on your phone called Log Data. This may include information such as your device’s IP address, device name, operating system version, configuration of the app, time and date of usage, and other statistics.</p>
@@ -63,7 +77,7 @@
     <h2>Links to Other Sites</h2>
     <p>This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
 
-    <h2>Children’s Privacy</h2>
+    <h2>Children's Privacy</h2>
     <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If we discover that a child under 13 has provided us with personal information, we will immediately delete it. If you are a parent or guardian and are aware that your child has provided us with personal information, please contact us.</p>
 
     <h2>Changes to This Privacy Policy</h2>
