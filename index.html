@@ -4,51 +4,359 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="facebook-domain-verification" content="fpi0pcjg7r0sbtakhb47tb32gsmnif" />
-    <title>Arshil Khan</title>
-    <meta name="description" content="Arshil Khan — sole proprietor (d/b/a Decibel Studios). Personal site and CV." />
+    <title>Decibel Studios — Software, AI & Cloud</title>
+    <meta name="description" content="Decibel Studios — independent software studio building AI-powered products, mobile apps, and cloud-native platforms." />
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #111;
-            background: #fff;
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #f6f8fb;
+            --ink: #0b1220;
+            --ink-2: #3b4658;
+            --muted: #6b7689;
+            --accent: #2f6bff;
+            --accent-2: #7a4dff;
+            --line: #e6e9ef;
         }
-        header {
-            padding: 20px 24px;
-            border-bottom: 1px solid #eee;
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
         }
-        header h1 {
-            margin: 0 0 4px 0;
-            font-size: 22px;
-            font-weight: 700;
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(10px);
+            border-bottom: 1px solid var(--line);
         }
-        header p {
-            margin: 0;
-            font-size: 14px;
-            color: #555;
-            line-height: 1.5;
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
         }
-        header a { color: #0366d6; text-decoration: none; }
-        header a:hover { text-decoration: underline; }
-        .cv {
-            display: block;
-            border: none;
-            width: 100%;
-            height: calc(100vh - 96px);
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+        .brand .dot {
+            width: 22px; height: 22px; border-radius: 6px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            box-shadow: 0 6px 16px rgba(47,107,255,0.35);
         }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { color: var(--ink-2); font-size: 14px; font-weight: 500; }
+        .nav-links a:hover { color: var(--ink); text-decoration: none; }
+        .btn {
+            display: inline-block; padding: 10px 18px;
+            background: var(--ink); color: #fff; border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+        }
+        .btn:hover { text-decoration: none; opacity: 0.9; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            box-shadow: 0 8px 24px rgba(47,107,255,0.35);
+        }
+        .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+        /* Hero */
+        .hero { padding: 96px 0 80px; position: relative; overflow: hidden; }
+        .hero::before {
+            content: ""; position: absolute; inset: -200px -200px auto auto;
+            width: 700px; height: 700px; border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(122,77,255,0.18), transparent 70%);
+            z-index: -1;
+        }
+        .hero::after {
+            content: ""; position: absolute; inset: auto auto -200px -200px;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(47,107,255,0.18), transparent 70%);
+            z-index: -1;
+        }
+        .eyebrow {
+            display: inline-block; font-size: 12px; font-weight: 600;
+            color: var(--accent); background: rgba(47,107,255,0.08);
+            padding: 6px 12px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        h1.title {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.05; letter-spacing: -0.025em;
+            margin: 18px 0 20px; font-weight: 800;
+        }
+        h1.title .grad {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .lede { font-size: 19px; color: var(--ink-2); max-width: 720px; margin: 0 0 32px; }
+        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        .section-head { max-width: 720px; margin: 0 0 48px; }
+        .section-head .eyebrow { margin-bottom: 14px; }
+        h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.15; letter-spacing: -0.02em;
+            margin: 0 0 14px; font-weight: 800;
+        }
+        .section-head p { font-size: 17px; color: var(--ink-2); margin: 0; }
+
+        .bg-alt { background: var(--bg-alt); }
+
+        /* Services grid */
+        .grid { display: grid; gap: 20px; }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 880px) {
+            .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+        .card {
+            background: #fff; border: 1px solid var(--line); border-radius: 14px;
+            padding: 28px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(11,18,32,0.08);
+            border-color: #d8dde7;
+        }
+        .icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(47,107,255,0.12), rgba(122,77,255,0.12));
+            color: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 16px;
+        }
+        .card h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+        .card p { margin: 0; color: var(--ink-2); font-size: 15px; }
+
+        /* Products */
+        .product {
+            display: flex; gap: 28px; align-items: center;
+            background: #fff; border: 1px solid var(--line); border-radius: 16px;
+            padding: 28px;
+        }
+        .product .thumb {
+            flex: 0 0 96px; height: 96px; border-radius: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 28px;
+            box-shadow: 0 12px 28px rgba(47,107,255,0.35);
+        }
+        .product h3 { margin: 0 0 6px; font-size: 20px; }
+        .product p { margin: 0 0 10px; color: var(--ink-2); }
+        @media (max-width: 600px) { .product { flex-direction: column; align-items: flex-start; } }
+
+        /* Tech list */
+        .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .pill {
+            padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            font-size: 14px; color: var(--ink-2); background: #fff;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #0b1220, #1a2440);
+            color: #fff; border-radius: 20px;
+            padding: 56px; text-align: center; margin: 0 0 80px;
+        }
+        .cta h2 { color: #fff; margin-bottom: 10px; }
+        .cta p { color: #c7cee0; margin: 0 0 24px; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--line); padding: 32px 0;
+            color: var(--muted); font-size: 14px;
+        }
+        .foot-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        footer a { color: var(--ink-2); }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Arshil Khan</h1>
-        <p>
-            Sole proprietor, doing business as <strong>Decibel Studios</strong>.
-            Owner and operator of <a href="https://dailyjobs.ai">DailyJobs.ai</a>.
-            Contact: <a href="mailto:me@arshilk.com">me@arshilk.com</a>.
-        </p>
+    <nav class="nav">
+        <div class="wrap nav-inner">
+            <a href="#top" class="brand"><span class="dot"></span> Decibel Studios</a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#products">Products</a>
+                <a href="#technologies">Technologies</a>
+                <a href="#about">About</a>
+                <a href="/resume">Resume</a>
+            </div>
+            <a class="btn btn-primary" href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header id="top" class="hero">
+        <div class="wrap">
+            <span class="eyebrow">Independent Software Studio</span>
+            <h1 class="title">We build <span class="grad">AI products</span><br/>that ship and scale.</h1>
+            <p class="lede">
+                Decibel Studios is an independent software studio crafting AI-powered products,
+                mobile apps, and cloud-native platforms. From first prototype to production at scale,
+                we design, build, and operate software end-to-end.
+            </p>
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="#contact">Start a project</a>
+                <a class="btn btn-ghost" href="#products">See our work</a>
+            </div>
+        </div>
     </header>
-    <embed class="cv" src="Arshil_SDE_CV.pdf" type="application/pdf" />
+
+    <section id="services">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What we do</span>
+                <h2>Services</h2>
+                <p>Full-stack product engineering, from idea to launch — and every release after.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="icon">◈</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>LLM-powered products, intelligent agents, retrieval pipelines, and applied ML for real customer workflows.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">◐</div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native iOS and Android apps designed for the App Store top charts — fast, polished, and monetizable.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">◑</div>
+                    <h3>Web Platforms</h3>
+                    <p>Modern web apps and dashboards built on React, Next.js, and TypeScript — accessible, responsive, and fast.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">▲</div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Production-grade infrastructure on AWS and GCP with CI/CD, observability, and cost-aware architecture.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">◆</div>
+                    <h3>Product Design</h3>
+                    <p>UX research, interface design, and prototyping that turns rough ideas into shippable, well-defined products.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">●</div>
+                    <h3>Consulting</h3>
+                    <p>Technical leadership, architecture review, and pragmatic guidance for teams scaling from zero to one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="bg-alt">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Our work</span>
+                <h2>Products</h2>
+                <p>A growing portfolio of apps and platforms built and operated by Decibel Studios.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="product">
+                    <div class="thumb">DJ</div>
+                    <div>
+                        <h3>DailyJobs.ai</h3>
+                        <p>AI-powered job discovery and application platform.</p>
+                        <a href="https://dailyjobs.ai">dailyjobs.ai →</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="thumb">♪</div>
+                    <div>
+                        <h3>AI Music Player</h3>
+                        <p>Intelligent music app with adaptive playback and discovery.</p>
+                        <a href="/privacy_aimusicplayer.html">Privacy →</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="thumb">≡</div>
+                    <div>
+                        <h3>AI Equalizer</h3>
+                        <p>Smart equalizer that learns and adapts to your listening.</p>
+                        <a href="/privacy_aiequilizer.html">Privacy →</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="thumb">◼</div>
+                    <div>
+                        <h3>BlackScreen & Utilities</h3>
+                        <p>Lightweight utility apps shipped under the Decibel Studios label.</p>
+                        <a href="/privacy_blackscreen.html">Privacy →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Stack</span>
+                <h2>Technologies</h2>
+                <p>The tools we reach for — chosen for reliability, velocity, and long-term maintainability.</p>
+            </div>
+            <div class="pills">
+                <span class="pill">Swift / SwiftUI</span>
+                <span class="pill">Kotlin</span>
+                <span class="pill">React</span>
+                <span class="pill">Next.js</span>
+                <span class="pill">TypeScript</span>
+                <span class="pill">Node.js</span>
+                <span class="pill">Python</span>
+                <span class="pill">FastAPI</span>
+                <span class="pill">PostgreSQL</span>
+                <span class="pill">Redis</span>
+                <span class="pill">AWS</span>
+                <span class="pill">GCP</span>
+                <span class="pill">Docker</span>
+                <span class="pill">Kubernetes</span>
+                <span class="pill">OpenAI / Anthropic APIs</span>
+                <span class="pill">LangChain</span>
+                <span class="pill">PyTorch</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-alt">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">About</span>
+                <h2>An independent studio with operator DNA.</h2>
+                <p>
+                    Decibel Studios is the trade name of Arshil Khan, a software engineer and sole proprietor.
+                    We don't just build software — we ship, operate, and grow it. Every product we work on
+                    benefits from the same hands-on engineering, product, and operating experience used to
+                    build our own apps.
+                </p>
+            </div>
+            <p><a href="/resume">View resume →</a></p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrap">
+            <div class="cta">
+                <h2>Have a project in mind?</h2>
+                <p>Tell us what you're building. We'll get back to you within a day.</p>
+                <a class="btn btn-primary" href="mailto:me@arshilk.com">me@arshilk.com</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap foot-inner">
+            <div>© <span id="y"></span> Decibel Studios · Arshil Khan, sole proprietor.</div>
+            <div>
+                <a href="/privacy.html">Privacy</a> ·
+                <a href="/resume">Resume</a> ·
+                <a href="mailto:me@arshilk.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
