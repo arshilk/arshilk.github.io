@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AI Equalizer: Bass Booster (Chrome Extension)</title>
+</head>
+<body>
+    <h1>Privacy Policy</h1>
+
+    <p>Decibel Studios built the <strong>AI Equalizer: Bass Booster</strong> Chrome extension (the "Extension"). The Extension is provided by Decibel Studios free of charge, with an optional paid Pro upgrade, and is intended for use as is.</p>
+
+    <p>This page is used to inform users regarding our policies with the collection, use, and disclosure of information if anyone decides to use the Extension. This policy covers the Chrome extension only. The AI Equalizer Android app has its own privacy policy at <a href="https://arshilk.com/privacy_aiequilizer.html">https://arshilk.com/privacy_aiequilizer.html</a>.</p>
+
+    <p>If you choose to use the Extension, then you agree to the collection and use of information in relation to this policy. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
+
+    <h2>Information Collection and Use</h2>
+    <p>The Extension is designed so that your data stays in your browser. Your equalizer settings, saved profiles, preferences, and optional listening history are stored locally using Chrome's extension storage on your device and are not collected by us in any way. Decibel Studios does not operate any server that receives data from the Extension.</p>
+
+    <p>The only information that leaves your device is described in the "Pro Upgrade and Payments" section below (your license key, sent to our payment provider to verify a Pro purchase). The Extension contains <strong>no advertising, no analytics, no crash reporting, and no tracking</strong>.</p>
+
+    <p><strong>Link to privacy policy of third-party service providers used by the Extension:</strong></p>
+    <ul>
+        <li><a href="https://dodopayments.com/privacy-policy">Dodo Payments</a> (checkout and license verification for the optional Pro upgrade)</li>
+        <li><a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp</a> (only if you choose to contact us from the Extension's Help &amp; Support section)</li>
+    </ul>
+
+    <h2>Browser Permissions</h2>
+    <p>The Extension requests the following permissions to provide its core functionality:</p>
+    <ul>
+        <li><strong>Tab Capture (tabCapture):</strong> Required to capture the audio of a browser tab so the equalizer, bass boost, volume boost, limiter, virtualizer, reverb, balance, compressor, multiband compressor, Equal Loudness and noise gate effects can be applied to it. Audio is captured only for a tab on which you press the power button, is processed entirely inside your browser, and is never recorded, stored, or transmitted. See "Tab Audio Processing" below.</li>
+        <li><strong>Offscreen Document (offscreen):</strong> Used to run the audio processing engine (Web Audio) in a hidden extension page, because Chrome extension background workers cannot process audio. It exists only while at least one tab is being equalized.</li>
+        <li><strong>Storage (storage):</strong> Used to save your equalizer settings, saved profiles, theme and language preferences, optional Recap history, and Pro license status locally on your device.</li>
+        <li><strong>Alarms (alarms):</strong> Used to periodically re-check the Pro license with our payment provider so that cancelled subscriptions and refunded purchases correctly return to the free version.</li>
+        <li><strong>Access to live.dodopayments.com (host permission):</strong> Used only to activate, validate, and deactivate a Pro license key through Dodo Payments' license API. The Extension does not read or change the content of any website and has no content scripts.</li>
+        <li><strong>Tabs (tabs, optional):</strong> Requested only if you turn on the optional Recap feature. Used to read the title and address of tabs that you are equalizing, to build your local listening history. See "Recap Feature" below.</li>
+        <li><strong>Microphone (optional, device detection only):</strong> Requested only if you press "Allow device detection" in Settings. Chrome only reveals the names of audio output devices (for example "AirPods Pro" or "MacBook Speakers") after this permission is granted. The Extension uses it solely to read device names so a saved profile can be applied automatically when you switch devices. The microphone stream is closed immediately; no audio is recorded, processed, or transmitted. You can revoke this permission at any time from Chrome's site settings for the Extension.</li>
+    </ul>
+
+    <h2>Tab Audio Processing</h2>
+    <p>When you turn the Extension on for a tab, Chrome routes that tab's audio to the Extension, which applies your chosen effects and plays the processed sound. All processing happens in real time inside your browser. The audio is not saved to disk, not uploaded, and not shared with Decibel Studios or any third party. Browser pages such as chrome:// pages and the Chrome Web Store cannot be captured. Capture stops when you press the power button again or close the tab.</p>
+
+    <h2>Recap Feature</h2>
+    <p>The <strong>Recap</strong> feature is an optional, opt-in listening summary that shows your time listened, top songs, top sites, and recent listening history for tabs you have equalized. Recap is off by default and requires the optional "tabs" permission, which Chrome asks you to approve when you enable it.</p>
+    <p>What Recap records:</p>
+    <ul>
+        <li>The title of an equalized tab (for example the song or video title), the website's address (domain), and how long sound was playing in that tab, only while the Extension is processing that tab's audio.</li>
+    </ul>
+    <p>What Recap does <strong>not</strong> record:</p>
+    <ul>
+        <li>No data from tabs that are not being equalized, no page contents, no form input, no cookies, no browsing history beyond the equalized tabs described above.</li>
+    </ul>
+    <p><strong>Where the data lives:</strong> Recap data is stored only in the Extension's local storage on your device. Nothing from Recap is uploaded to Decibel Studios, Google, or any third party. The optional "Copy summary" button copies a text summary to your clipboard only when you press it.</p>
+    <p><strong>How to stop and clear it:</strong> Turn off the "Tracking" switch on the Recap page to stop recording, and press "Clear History" to delete everything Recap has stored. You can also remove the "tabs" permission from the Extension's details page in Chrome. Uninstalling the Extension deletes all Recap data.</p>
+
+    <h2>Pro Upgrade and Payments</h2>
+    <p>The Extension offers an optional Pro upgrade (monthly subscription, yearly subscription, or lifetime purchase). Payments are processed by <strong>Dodo Payments</strong> on their secure checkout page. We do not collect, store, or have access to your card or payment details.</p>
+    <p>After purchase, Dodo Payments issues a license key, which is shown on the checkout return page and emailed to you. To unlock Pro, the Extension sends the following to Dodo Payments' license API:</p>
+    <ul>
+        <li>Your <strong>license key</strong> and an activation name ("AI Equalizer for Chrome"), when you activate Pro;</li>
+        <li>Your license key and its activation ID, when the Extension periodically re-checks that the license is still valid (for example when you open the Extension, when you start equalizing, when Chrome starts, and about once an hour in the background);</li>
+        <li>Your license key and its activation ID, when you choose "Remove from this browser".</li>
+    </ul>
+    <p>When a license is activated, Dodo Payments returns the purchased plan, the email address used for the purchase, and the activation date. The Extension stores these locally on your device only to show your plan details (plan, status, estimated renewal date, email, activation date, last check time, and license key). They are not sent anywhere else. Dodo Payments' handling of your data is governed by its own privacy policy, linked above.</p>
+
+    <h2>Profiles and Automatic Device Switching</h2>
+    <p>Saved sound profiles, and the output device each profile is assigned to, are stored locally on your device. If you use automatic device switching (a Pro feature), the Extension reads the name of the current default audio output device while a tab is being equalized and applies the matching profile. Device names are stored locally (up to the 20 most recent) and are never transmitted.</p>
+
+    <h2>Backup and Restore</h2>
+    <p>The Extension's Backup &amp; Restore feature exports your equalizer settings, saved profiles, and preferences to a file that is downloaded to your device, and can import such a file. Backup files are created and read entirely within your browser; the Extension does not upload them anywhere. Backup files do not include your license key or Recap history.</p>
+
+    <h2>Headphone EQ Database</h2>
+    <p>The Extension includes a bundled database of headphone calibration profiles derived from the open-source AutoEq project. This database is shipped inside the Extension and searched entirely on your device; no headphone selection or usage data is transmitted.</p>
+
+    <h2>Contact, Sharing and External Links</h2>
+    <p>If you use "Contact Us", the Extension opens WhatsApp (wa.me) in a new tab with the message you typed, so you can send it yourself; the Extension does not send or store that message. "Share" copies a short message with a link to the Extension to your clipboard or opens your system's share sheet. Links to YouTube, Instagram, Google Play, the Chrome Web Store, and our other apps simply open those websites in a new tab.</p>
+
+    <h2>Log Data</h2>
+    <p>The Extension does not collect log data, crash reports, or usage statistics. If something goes wrong, error details are written only to your browser's local developer console and are never transmitted.</p>
+
+    <h2>Cookies</h2>
+    <p>The Extension does not use cookies. Websites you visit, including the Dodo Payments checkout page, may use their own cookies according to their own policies.</p>
+
+    <h2>Chrome Web Store User Data Policy</h2>
+    <p>The use of information received from Chrome APIs adheres to the <a href="https://developer.chrome.com/docs/webstore/program-policies/policies">Chrome Web Store User Data Policy</a>, including the Limited Use requirements. We do not sell user data, we do not use or transfer it for purposes unrelated to the Extension's single purpose of improving the sound of browser tabs, and we do not use or transfer it to determine creditworthiness or for lending purposes.</p>
+
+    <h2>Data Retention and Deletion</h2>
+    <p>All data the Extension stores lives in your browser until you delete it. You can reset audio settings from Settings, delete profiles individually, clear Recap history from the Recap page, and remove your license with "Remove from this browser". Uninstalling the Extension deletes all of its locally stored data. To ask Dodo Payments about purchase records, contact Dodo Payments or use the details in your purchase receipt email.</p>
+
+    <h2>Security</h2>
+    <p>We value your trust, thus we strive to use commercially acceptable means of protecting your information. Communication with Dodo Payments uses encrypted HTTPS connections. But remember, no method of transmission over the internet or electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
+
+    <h2>Links to Other Sites</h2>
+    <p>The Extension may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>The Extension does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If we discover that a child under 13 has provided us with personal information, we will immediately delete it. If you are a parent or guardian and are aware that your child has provided us with personal information, please contact us.</p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at: <a href="mailto:me@arshilk.com">me@arshilk.com</a></p>
+
+    <p>This privacy policy was last updated on October 7, 2026.</p>
+</body>
+</html>
