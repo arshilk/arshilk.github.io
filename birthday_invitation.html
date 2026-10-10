@@ -240,6 +240,44 @@
 
   canvas#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
 
+  /* phones: use the full width and larger type */
+  @media (max-width: 600px) {
+    .stage { padding: 24px 10px; }
+    .to { font-size: 13vw; margin-bottom: 36px; }
+    .envelope { --w: 94vw; }
+    .letter small { font-size: 3.4vw; }
+    .letter b { font-size: 14vw; }
+    .seal { width: 84px; height: 84px; margin: -42px 0 0 -42px; font-size: 40px; }
+    .tap { font-size: 18px; margin-top: 46px; }
+    .tap .hand { font-size: 26px; }
+
+    .invite { padding: 20px 8px; }
+    .card { max-width: none; padding: 46px 22px 36px; }
+    .balloons { font-size: 50px; }
+    .balloons span:nth-child(2) { font-size: 60px; }
+    .eyebrow { font-size: 14px; letter-spacing: 3.5px; }
+    .name { font-size: 16vw; white-space: nowrap; }
+    .sub { font-size: 26px; }
+    .date-box div { padding: 6px 18px; }
+    .date-box .day { font-size: 64px; }
+    .date-box .lbl { font-size: 16px; }
+    .details { max-width: none; gap: 16px; padding: 0 4px; }
+    .details .row { gap: 14px; }
+    .details .ic { width: 46px; height: 46px; font-size: 22px; }
+    .details b { font-size: 20px; }
+    .details span.t { font-size: 16.5px; }
+    .countdown { gap: 8px; }
+    .countdown div { flex: 1; min-width: 0; padding: 12px 4px; border-radius: 14px; }
+    .countdown b { font-size: 30px; }
+    .countdown small { font-size: 11px; }
+    .msg { font-size: 18px; }
+    .btn { font-size: 18px; padding: 16px 18px; }
+    .from .closing { font-size: 22px; }
+    .from small { font-size: 14px; }
+    .from .hosts { font-size: 9.6vw; white-space: nowrap; }
+    .replay { font-size: 15px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
@@ -284,7 +322,7 @@
       </div>
       <div class="details">
         <div class="row"><span class="ic">🕖</span><div><b>7:00 PM onwards</b><span class="t">Thursday, 29 October 2026</span></div></div>
-        <div class="row"><span class="ic">📍</span><div><b>Yamuna Banquet Hall</b><span class="t">Kalindi Kunj Park, Block H, Okhla,<br>New Delhi, Delhi 110076</span></div></div>
+        <div class="row"><span class="ic">📍</span><div><b>Yamuna Banquet Hall</b><span class="t">Kalindi Kunj Park, Block H, Okhla, New Delhi, Delhi 110076</span></div></div>
       </div>
       <div class="countdown" id="countdown" aria-live="polite"></div>
       <p class="msg">Come and share the cake, the fun and lots of smiles.<br><strong>Your presence is the best gift!</strong> 💙</p>
