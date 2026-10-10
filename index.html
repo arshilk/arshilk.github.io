@@ -1,844 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="facebook-domain-verification" content="fpi0pcjg7r0sbtakhb47tb32gsmnif" />
-    <title>Decibel Studios — Mobile Apps Built with Care</title>
-    <meta name="description" content="Decibel Studios — independent mobile studio building Android apps for audio, utility, and productivity. Trusted by users on Google Play." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0f;
-            --bg-card: #13131c;
-            --bg-card-2: #1a1a26;
-            --border: #26262e;
-            --border-2: #36363f;
-            --fg: #ffffff;
-            --fg-2: #b4b4c7;
-            --fg-3: #7a7a8f;
-            --purple: #a855f7;
-            --pink: #ec4899;
-            --gold: #f59e0b;
-            --blue: #3b82f6;
-        }
-        * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--fg);
-            background: var(--bg);
-            line-height: 1.55;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-        a { color: inherit; text-decoration: none; }
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="fpi0pcjg7r0sbtakhb47tb32gsmnif" />
+<title>Arshil Khan — Software Engineer (Backend · Go · Distributed Systems)</title>
+<meta name="description" content="Arshil Khan — SDE-2 at Angel One. 5+ years building high-throughput backend systems in Go, Python and Java: real-time market data, data platforms and APIs at 500K TPS.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arshilk.com/">
+<meta property="og:title" content="Arshil Khan — Software Engineer">
+<meta property="og:description" content="SDE-2 at Angel One · Backend & distributed systems · Go, Python, AWS">
+<meta property="og:image" content="https://arshilk.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07090f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2307090f'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-weight='700' font-size='28' fill='%2334d399'>AK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Arshil Khan","url":"https://arshilk.com","email":"mailto:me@arshilk.com","jobTitle":"Software Development Engineer 2","worksFor":{"@type":"Organization","name":"Angel One"},"alumniOf":"Jamia Millia Islamia","sameAs":["https://www.linkedin.com/in/arshilk","https://github.com/arshilk"]}
+</script>
+<style>
+  :root {
+    --bg: #07090f;
+    --bg-2: #0c111b;
+    --card: #0f1520;
+    --card-2: #131b29;
+    --line: #1c2533;
+    --line-2: #283244;
+    --fg: #e8edf5;
+    --fg-2: #a3adbf;
+    --fg-3: #6b7689;
+    --accent: #34d399;
+    --accent-2: #22d3ee;
+    --accent-3: #a78bfa;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg);
+    line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: rgba(52,211,153,.3); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: var(--mono); }
 
-        /* Background orbs */
-        .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .orb {
-            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
-        }
-        .orb-1 { width: 600px; height: 600px; background: var(--purple); top: -200px; right: -150px; }
-        .orb-2 { width: 500px; height: 500px; background: var(--pink); top: 30%; left: -200px; opacity: 0.3; }
-        .orb-3 { width: 450px; height: 450px; background: var(--gold); bottom: -100px; right: 20%; opacity: 0.2; }
+  /* background grid + glow */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px; opacity: .35;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .bg-glow {
+    position: fixed; z-index: -1; pointer-events: none; width: 720px; height: 720px; border-radius: 50%;
+    top: -360px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(52,211,153,.16), rgba(34,211,238,.06) 45%, transparent 70%);
+  }
 
-        /* Nav */
-        .nav {
-            position: sticky; top: 0; z-index: 50;
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            height: 72px;
-        }
-        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -0.01em; font-size: 17px; }
-        .brand .logo {
-            width: 32px; height: 32px; border-radius: 9px;
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 900; color: #fff;
-        }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a {
-            color: var(--fg-2); font-size: 14px; font-weight: 500;
-            transition: color .2s ease;
-        }
-        .nav-links a:hover { color: var(--fg); }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 11px 20px; border-radius: 10px;
-            font-size: 14px; font-weight: 600;
-            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-            cursor: pointer; border: none;
-        }
-        .btn:hover { transform: translateY(-1px); }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
-        }
-        .btn-primary:hover { box-shadow: 0 14px 36px rgba(168, 85, 247, 0.5); }
-        .btn-ghost {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--fg);
-            border: 1px solid var(--border-2);
-        }
-        .btn-ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--purple); }
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(7,9,15,.72); border-bottom: 1px solid transparent; transition: border-color .2s;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--mono); font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+  .logo .p { color: var(--accent); }
+  .logo .cur { width: 9px; height: 18px; background: var(--accent); display: inline-block; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--fg-2); }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-links a .n { font-family: var(--mono); color: var(--accent); font-size: 12px; margin-right: 4px; }
+  .nav-cta { font-family: var(--mono); font-size: 13px; padding: 8px 14px; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; }
+  .nav-cta:hover { background: rgba(52,211,153,.1); }
+  .menu-btn { display: none; background: none; border: 0; color: var(--fg); cursor: pointer; padding: 8px; }
 
-        /* Hero */
-        .hero { padding: 100px 0 80px; position: relative; z-index: 1; }
-        .hero-grid {
-            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
-        }
-        .eyebrow {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 12px; font-weight: 600;
-            color: var(--fg-2);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            padding: 8px 16px; border-radius: 999px;
-            letter-spacing: 0.08em; text-transform: uppercase;
-        }
-        .eyebrow .pulse {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--purple);
-            box-shadow: 0 0 12px var(--purple);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        h1.title {
-            font-size: clamp(40px, 5.5vw, 68px);
-            line-height: 1.05; letter-spacing: -0.03em;
-            margin: 24px 0 24px; font-weight: 800;
-        }
-        h1.title .grad {
-            background: linear-gradient(135deg, var(--purple), var(--pink), var(--gold));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .lede {
-            font-size: 18px; color: var(--fg-2);
-            max-width: 540px; margin: 0 0 36px;
-        }
-        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+  /* hero */
+  .hero { padding: 88px 0 72px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--fg-2);
+    border: 1px solid var(--line-2); background: var(--card); padding: 6px 12px; border-radius: 999px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(52,211,153,.6); animation: ping 2s infinite; }
+  @keyframes ping { 70% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+  .hero h1 { font-size: clamp(40px, 6vw, 68px); line-height: 1.05; letter-spacing: -.03em; font-weight: 800; margin: 22px 0 14px; }
+  .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2) 55%, var(--accent-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .role { font-family: var(--mono); font-size: clamp(15px, 2vw, 18px); color: var(--fg-2); min-height: 1.6em; }
+  .role .typed { color: var(--accent); }
+  .role .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--accent); vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+  .lead { margin-top: 20px; font-size: 17px; color: var(--fg-2); max-width: 560px; }
+  .lead b { color: var(--fg); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 600;
+    padding: 12px 18px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--card); color: var(--fg);
+    transition: transform .15s, border-color .15s, background .15s;
+  }
+  .btn:hover { transform: translateY(-2px); border-color: var(--fg-3); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #04110b; }
+  .btn.primary:hover { background: #4ee3ad; }
+  .btn svg { width: 17px; height: 17px; flex: none; }
+  .socials { display: flex; gap: 18px; margin-top: 28px; font-family: var(--mono); font-size: 13px; color: var(--fg-3); }
+  .socials a:hover { color: var(--accent); }
 
-        /* Hero stats */
-        .stats { display: flex; gap: 48px; flex-wrap: wrap; }
-        .stat .num {
-            font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .stat .lbl { font-size: 13px; color: var(--fg-3); font-weight: 500; }
+  /* terminal */
+  .term { background: var(--card); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(52,211,153,.04); }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; background: var(--card-2); border-bottom: 1px solid var(--line); }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
+  .term-bar span { margin-left: auto; margin-right: auto; font-family: var(--mono); font-size: 12px; color: var(--fg-3); transform: translateX(-20px); }
+  .term-body { padding: 18px 18px 22px; font-family: var(--mono); font-size: 13.5px; line-height: 1.75; min-height: 300px; }
+  .term-body .pr { color: var(--accent); }
+  .term-body .cmd { color: var(--fg); }
+  .term-body .out { color: var(--fg-2); }
+  .term-body .k { color: var(--accent-2); }
+  .term-body .s { color: #fbbf24; }
+  .term-body .c { color: var(--accent-3); }
 
-        /* Hero phone mockup */
-        .phone-wrap {
-            position: relative; display: flex; justify-content: center;
-        }
-        .phone {
-            width: 280px; aspect-ratio: 9/19;
-            background: linear-gradient(135deg, #1a1a26, #0a0a0f);
-            border: 2px solid var(--border-2);
-            border-radius: 36px;
-            padding: 14px;
-            box-shadow:
-                0 30px 80px rgba(168, 85, 247, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-            position: relative;
-        }
-        .phone-notch {
-            position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-            width: 100px; height: 22px;
-            background: #000; border-radius: 0 0 14px 14px;
-            z-index: 2;
-        }
-        .phone-screen {
-            background: linear-gradient(160deg, #0d0d18, #1a1a26);
-            border-radius: 26px;
-            height: 100%; padding: 44px 18px 18px;
-            display: flex; flex-direction: column;
-            overflow: hidden;
-        }
-        .phone-time {
-            text-align: center; font-size: 13px; font-weight: 600;
-            color: var(--fg); margin-bottom: 18px;
-        }
-        .phone-app-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-        }
-        .phone-app {
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-        }
-        .phone-app .icon {
-            width: 50px; height: 50px; border-radius: 13px;
-            object-fit: cover;
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .phone-app .name { font-size: 9px; color: var(--fg-2); text-align: center; }
+  /* sections */
+  section { padding: 84px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 36px; }
+  .sec-head .n { font-family: var(--mono); color: var(--accent); font-size: 15px; }
+  .sec-head h2 { font-size: clamp(26px, 3.4vw, 34px); letter-spacing: -.02em; font-weight: 700; }
+  .sec-head .rule { flex: 1; height: 1px; background: var(--line); align-self: center; max-width: 320px; }
+  .muted { color: var(--fg-2); }
 
-        @media (max-width: 880px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-            .phone-wrap { order: -1; }
-            .phone { width: 220px; }
-            .nav-links { display: none; }
-            .stats { gap: 28px; }
-            .stat .num { font-size: 28px; }
-        }
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 20px; }
+  .stat b { display: block; font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+  .stat span { font-size: 13.5px; color: var(--fg-2); }
 
-        /* Sections */
-        section { padding: 100px 0; position: relative; z-index: 1; }
-        .section-head {
-            max-width: 700px; margin: 0 auto 56px; text-align: center;
-        }
-        .section-head .eyebrow { margin-bottom: 18px; }
-        h2 {
-            font-size: clamp(30px, 4vw, 44px);
-            line-height: 1.15; letter-spacing: -0.025em;
-            margin: 0 0 16px; font-weight: 800;
-        }
-        h2 .grad {
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .section-head p { font-size: 17px; color: var(--fg-2); margin: 0; }
+  /* about */
+  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  .about p { color: var(--fg-2); font-size: 16.5px; margin-bottom: 16px; }
+  .about p b { color: var(--fg); font-weight: 600; }
+  .facts { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; font-family: var(--mono); font-size: 13.5px; align-self: start; }
+  .facts div { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+  .facts div:last-child { border-bottom: 0; }
+  .facts dt { color: var(--fg-3); }
+  .facts dd { color: var(--fg); text-align: right; }
 
-        /* Filter tabs */
-        .filters {
-            display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
-            margin-bottom: 48px;
-        }
-        .filter {
-            padding: 10px 20px; border-radius: 999px;
-            font-size: 14px; font-weight: 500;
-            color: var(--fg-2);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-        .filter:hover { color: var(--fg); border-color: var(--border-2); }
-        .filter.active {
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
-        }
+  /* experience */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--accent), var(--line) 70%); }
+  .job { position: relative; margin-bottom: 26px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; transition: border-color .2s; }
+  .job:hover { border-color: var(--line-2); }
+  .job::before { content: ""; position: absolute; left: -28px; top: 30px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .job-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .job h3 { font-size: 19px; font-weight: 700; }
+  .job h3 .at { color: var(--accent); }
+  .job .when { font-family: var(--mono); font-size: 13px; color: var(--fg-3); white-space: nowrap; }
+  .job .sub { color: var(--fg-2); font-size: 14px; margin-top: 2px; }
+  .roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .roles span { font-family: var(--mono); font-size: 12px; color: var(--fg-2); background: var(--card-2); border: 1px solid var(--line); padding: 3px 9px; border-radius: 6px; }
+  .roles span b { color: var(--accent); font-weight: 500; }
+  .job ul { list-style: none; margin-top: 14px; }
+  .job li { position: relative; padding-left: 20px; color: var(--fg-2); font-size: 15px; margin-bottom: 8px; }
+  .job li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+  .job li b { color: var(--fg); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-family: var(--mono); font-size: 12px; color: var(--accent-2); background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.18); padding: 3px 9px; border-radius: 999px; }
 
-        /* App grid */
-        .app-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-        }
-        @media (max-width: 1000px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 640px) { .app-grid { grid-template-columns: 1fr; } }
-        .app-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 28px;
-            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
-        }
-        .app-card::before {
-            content: ""; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(168,85,247,0.08), transparent 50%);
-            opacity: 0; transition: opacity .25s ease;
-            pointer-events: none;
-        }
-        .app-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.15);
-        }
-        .app-card:hover::before { opacity: 1; }
-        .app-card .app-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; position: relative; }
-        .app-icon {
-            width: 60px; height: 60px; border-radius: 16px;
-            object-fit: cover;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-        }
-        .app-card h3 { margin: 0 0 4px; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
-        .app-card .tag { font-size: 13px; color: var(--fg-3); font-weight: 500; }
-        .app-card .desc { font-size: 14px; color: var(--fg-2); margin: 0 0 20px; flex-grow: 1; position: relative; }
-        .app-meta {
-            display: flex; gap: 16px; margin-bottom: 20px;
-            font-size: 13px; color: var(--fg-3); position: relative;
-        }
-        .app-meta .item { display: flex; align-items: center; gap: 6px; }
-        .app-meta .star { color: var(--gold); }
-        .app-links { display: flex; gap: 8px; position: relative; flex-wrap: wrap; }
-        .app-link {
-            padding: 8px 14px; border-radius: 8px;
-            font-size: 13px; font-weight: 600;
-            border: 1px solid var(--border-2);
-            color: var(--fg-2);
-            transition: all .2s ease;
-        }
-        .app-link:hover { color: var(--fg); border-color: var(--purple); background: rgba(168,85,247,0.08); }
-        .app-link.primary {
-            background: rgba(168, 85, 247, 0.12);
-            border-color: rgba(168, 85, 247, 0.35);
-            color: #d8b4fe;
-        }
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .skill-card h3 { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--accent); margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 13.5px; padding: 6px 11px; border-radius: 8px; background: var(--card-2); border: 1px solid var(--line); color: var(--fg); }
 
-        /* Features */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-        }
-        @media (max-width: 880px) { .features-grid { grid-template-columns: 1fr; } }
-        .feature {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 32px 28px;
-            transition: border-color .25s ease, transform .25s ease;
-        }
-        .feature:hover { border-color: var(--border-2); transform: translateY(-2px); }
-        .feature .ficon {
-            width: 48px; height: 48px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; margin-bottom: 18px;
-            background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(236,72,153,0.18));
-            color: #d8b4fe;
-        }
-        .feature h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
-        .feature p { margin: 0; color: var(--fg-2); font-size: 14px; }
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .proj { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; transition: transform .2s, border-color .2s; }
+  .proj:hover { transform: translateY(-4px); border-color: var(--line-2); }
+  .proj-top { display: flex; align-items: center; gap: 14px; }
+  .proj-top img { width: 48px; height: 48px; border-radius: 12px; }
+  .proj h3 { font-size: 18px; font-weight: 700; }
+  .proj .kind { font-family: var(--mono); font-size: 12px; color: var(--fg-3); }
+  .proj p { color: var(--fg-2); font-size: 15px; margin-top: 14px; flex: 1; }
+  .proj .metrics { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-family: var(--mono); font-size: 13px; }
+  .proj .metrics b { color: var(--accent); font-weight: 700; }
+  .proj .links { display: flex; gap: 16px; margin-top: 18px; font-family: var(--mono); font-size: 13px; }
+  .proj .links a { color: var(--accent-2); }
+  .proj .links a:hover { text-decoration: underline; }
+  .more-apps { margin-top: 18px; background: var(--card); border: 1px dashed var(--line-2); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--fg-2); font-size: 14.5px; }
+  .more-apps .icons { display: flex; }
+  .more-apps .icons img { width: 34px; height: 34px; border-radius: 9px; border: 2px solid var(--card); margin-left: -8px; }
+  .more-apps .icons img:first-child { margin-left: 0; }
+  .more-apps a { color: var(--accent-2); font-family: var(--mono); font-size: 13px; margin-left: auto; }
 
-        /* About */
-        .about-grid {
-            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
-        }
-        @media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
-        .about-grid h2 { text-align: left; }
-        .about-grid .lede { max-width: none; }
-        .about-list { list-style: none; padding: 0; margin: 28px 0 0; }
-        .about-list li {
-            padding: 12px 0; border-bottom: 1px solid var(--border);
-            color: var(--fg-2); font-size: 15px;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .about-list li:last-child { border-bottom: none; }
-        .about-list .check {
-            width: 22px; height: 22px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 12px; font-weight: 800; flex-shrink: 0;
-        }
-        .about-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 40px;
-            position: relative; overflow: hidden;
-        }
-        .about-card::before {
-            content: ""; position: absolute; top: -100px; right: -100px;
-            width: 300px; height: 300px; border-radius: 50%;
-            background: radial-gradient(closest-side, rgba(168,85,247,0.25), transparent 70%);
-        }
-        .about-stats {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
-            position: relative;
-        }
-        .about-stat .num {
-            font-size: 38px; font-weight: 800; letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .about-stat .lbl { font-size: 13px; color: var(--fg-3); }
+  /* achievements + education */
+  .two { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .panel h3 { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--accent); margin-bottom: 16px; }
+  .awards { list-style: none; }
+  .awards li { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+  .awards li:last-child { border-bottom: 0; }
+  .awards .ic { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: var(--card-2); border: 1px solid var(--line); font-size: 16px; }
+  .awards small { display: block; color: var(--fg-3); font-family: var(--mono); font-size: 12px; }
+  .edu h4 { font-size: 18px; font-weight: 700; }
+  .edu .deg { color: var(--fg-2); font-size: 15px; margin-top: 4px; }
+  .edu .meta { font-family: var(--mono); font-size: 13px; color: var(--fg-3); margin-top: 8px; }
+  .cpi { margin-top: 20px; }
+  .cpi .bar { height: 8px; border-radius: 99px; background: var(--card-2); border: 1px solid var(--line); overflow: hidden; margin-top: 8px; }
+  .cpi .bar i { display: block; height: 100%; width: 95.8%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .cpi .lbl { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 13px; }
+  .cpi .lbl b { color: var(--accent); }
+  .oss { margin-top: 22px; padding-top: 20px; border-top: 1px dashed var(--line); }
 
-        /* Contact */
-        .contact-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: stretch;
-        }
-        @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 36px;
-        }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-        .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-        .field label { font-size: 13px; color: var(--fg-2); font-weight: 500; }
-        .field input, .field select, .field textarea {
-            background: var(--bg);
-            border: 1px solid var(--border-2);
-            color: var(--fg);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 14px;
-            transition: border-color .2s ease;
-        }
-        .field input:focus, .field select:focus, .field textarea:focus {
-            outline: none; border-color: var(--purple);
-        }
-        .field textarea { resize: vertical; min-height: 120px; }
-        .contact-info {
-            display: flex; flex-direction: column; gap: 16px;
-        }
-        .contact-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            transition: border-color .2s ease, transform .2s ease;
-        }
-        .contact-item:hover { border-color: var(--border-2); transform: translateY(-2px); }
-        .contact-item .ci-icon {
-            width: 42px; height: 42px; border-radius: 11px;
-            background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(236,72,153,0.2));
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 12px; font-size: 20px;
-        }
-        .contact-item h4 { margin: 0 0 4px; font-size: 15px; }
-        .contact-item p { margin: 0; font-size: 13px; color: var(--fg-3); }
-        .contact-item a { color: var(--fg-2); font-size: 14px; }
-        .contact-item a:hover { color: #d8b4fe; }
+  /* writing */
+  .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .post { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; position: relative; overflow: hidden; }
+  .post .soon { position: absolute; top: 16px; right: 16px; font-family: var(--mono); font-size: 11px; color: var(--accent-3); border: 1px solid rgba(167,139,250,.35); padding: 2px 8px; border-radius: 99px; }
+  .post .topic { font-family: var(--mono); font-size: 12px; color: var(--fg-3); }
+  .post h3 { font-size: 17px; margin-top: 10px; line-height: 1.4; padding-right: 30px; }
+  .post p { color: var(--fg-2); font-size: 14px; margin-top: 8px; }
+  .writing-note { margin-top: 18px; color: var(--fg-3); font-size: 14px; }
+  .writing-note a { color: var(--accent-2); }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 60px 0 32px;
-            position: relative; z-index: 1;
-            margin-top: 40px;
-        }
-        .foot-grid {
-            display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px;
-            margin-bottom: 40px;
-        }
-        @media (max-width: 700px) { .foot-grid { grid-template-columns: 1fr; gap: 28px; } }
-        .foot-brand p { color: var(--fg-3); font-size: 14px; max-width: 320px; margin: 16px 0 0; }
-        .foot-col h5 {
-            font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-            color: var(--fg-3); margin: 0 0 18px; font-weight: 600;
-        }
-        .foot-col a {
-            display: block; color: var(--fg-2); font-size: 14px; margin-bottom: 12px;
-            transition: color .2s ease;
-        }
-        .foot-col a:hover { color: var(--fg); }
-        .foot-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-            font-size: 13px; color: var(--fg-3);
-        }
-        .foot-bottom a { color: var(--fg-2); }
-        .foot-bottom a:hover { color: var(--fg); }
-    </style>
+  /* contact */
+  .contact { text-align: center; max-width: 640px; margin: 0 auto; }
+  .contact h2 { font-size: clamp(32px, 5vw, 48px); letter-spacing: -.03em; font-weight: 800; margin: 12px 0 14px; }
+  .contact p { color: var(--fg-2); font-size: 17px; }
+  .contact .cta { justify-content: center; }
+  .copy { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; background: var(--card); border: 1px solid var(--line-2); border-radius: 10px; padding: 10px 10px 10px 16px; }
+  .copy button { font: inherit; font-size: 12px; background: var(--card-2); color: var(--fg-2); border: 1px solid var(--line-2); border-radius: 7px; padding: 5px 10px; cursor: pointer; }
+  .copy button:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* footer */
+  footer { border-top: 1px solid var(--line); padding: 36px 0 44px; margin-top: 40px; font-size: 13.5px; color: var(--fg-3); }
+  footer .row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  footer a:hover { color: var(--fg); }
+  footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+  details.legal { margin-top: 18px; }
+  details.legal summary { cursor: pointer; font-family: var(--mono); font-size: 12.5px; list-style: none; }
+  details.legal summary::-webkit-details-marker { display: none; }
+  details.legal summary::before { content: "▸ "; }
+  details.legal[open] summary::before { content: "▾ "; }
+  details.legal .list { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 12px; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 56px; gap: 40px; }
+    .about, .two { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .skills, .posts { grid-template-columns: 1fr 1fr; }
+    .projects { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 16px; }
+    .menu-btn { display: block; }
+    .nav-cta { display: none; }
+    .nav-links {
+      display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(7,9,15,.97); border-bottom: 1px solid var(--line); padding: 8px 16px 16px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid var(--line); }
+    section { padding: 64px 0; }
+    .skills, .posts { grid-template-columns: 1fr; }
+    .term-body { font-size: 12.5px; min-height: 292px; }
+    .stat b { font-size: 26px; }
+    .job { padding: 20px 18px; }
+    .timeline { padding-left: 22px; }
+    .job::before { left: -22px; }
+    .timeline::before { left: 3px; }
+    .more-apps a { margin-left: 0; }
+    .copy { font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
 </head>
 <body>
-    <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="p">~/</span>arshilk<span class="cur"></span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about"><span class="n">01.</span>About</a>
+      <a href="#experience"><span class="n">02.</span>Experience</a>
+      <a href="#projects"><span class="n">03.</span>Projects</a>
+      <a href="#writing"><span class="n">04.</span>Blog</a>
+      <a href="#contact"><span class="n">05.</span>Contact</a>
     </div>
+    <a class="nav-cta" href="/Arshil_SDE_CV.pdf" target="_blank" rel="noopener">resume.pdf ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
 
-    <nav class="nav">
-        <div class="wrap nav-inner">
-            <a href="#top" class="brand">
-                <span class="logo">D</span>
-                Decibel Studios
-            </a>
-            <div class="nav-links">
-                <a href="#apps">Apps</a>
-                <a href="#features">Features</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
+<main id="top">
+  <div class="wrap">
+    <header class="hero">
+      <div>
+        <span class="status"><span class="dot"></span>SDE-2 @ Angel One · Mumbai, India</span>
+        <h1>Hi, I'm <span class="grad">Arshil Khan</span>.</h1>
+        <div class="role">&gt; <span class="typed" id="typed"></span><span class="caret"></span></div>
+        <p class="lead">I build <b>high-throughput backend systems</b>: real-time market data, data platforms and APIs that serve <b>500K requests/sec</b>. Over 5 years at <b>Angel One</b> and <b>Innovaccer</b>, mostly in Go and Python on AWS.</p>
+        <div class="cta">
+          <a class="btn primary" href="/Arshil_SDE_CV.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>Download CV</a>
+          <a class="btn" href="https://www.linkedin.com/in/arshilk" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+          <a class="btn" href="https://github.com/arshilk" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0012 .3"/></svg>GitHub</a>
+          <a class="btn" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a>
         </div>
-    </nav>
+      </div>
 
-    <header id="top" class="hero">
-        <div class="wrap">
-            <div class="hero-grid">
-                <div>
-                    <span class="eyebrow"><span class="pulse"></span> Solo Indie Developer</span>
-                    <h1 class="title">Android apps,<br/>crafted with <span class="grad">care</span>.</h1>
-                    <p class="lede">
-                        Hi, I'm <strong style="color: var(--fg);">Arshil Khan</strong> — I design, build, and ship Android apps under the name
-                        <strong style="color: var(--fg);">Decibel Studios</strong>. It's a working name, not a company:
-                        every app here is made and supported by one person, end to end.
-                    </p>
-                    <div class="hero-ctas">
-                        <a class="btn btn-primary" href="#apps">Explore Our Apps →</a>
-                        <a class="btn btn-ghost" href="#contact">Get In Touch</a>
-                    </div>
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="num">6+</div>
-                            <div class="lbl">Published Apps</div>
-                        </div>
-                        <div class="stat">
-                            <div class="num">★ 4.5</div>
-                            <div class="lbl">Avg Play Rating</div>
-                        </div>
-                        <div class="stat">
-                            <div class="num">2016</div>
-                            <div class="lbl">Active Since</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="phone-wrap">
-                    <div class="phone">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen">
-                            <div class="phone-time">9:41</div>
-                            <div class="phone-app-grid">
-                                <div class="phone-app"><img class="icon" src="assets/apps/aiequalizer.png" alt=""><div class="name">Equalizer</div></div>
-                                <div class="phone-app"><img class="icon" src="assets/apps/aimusicplayer.png" alt=""><div class="name">Music</div></div>
-                                <div class="phone-app"><img class="icon" src="assets/apps/notch.png" alt=""><div class="name">Notch</div></div>
-                                <div class="phone-app"><img class="icon" src="assets/apps/sleepingsounds.png" alt=""><div class="name">Sleep</div></div>
-                                <div class="phone-app"><img class="icon" src="assets/apps/blackscreen.png" alt=""><div class="name">BlackScreen</div></div>
-                                <div class="phone-app"><img class="icon" src="assets/apps/dailyjobs.png" alt=""><div class="name">DailyJobs</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="term" aria-label="Terminal summary">
+        <div class="term-bar"><i></i><i></i><i></i><span>arshil@prod: ~</span></div>
+        <div class="term-body" id="term"></div>
+      </div>
     </header>
 
-    <section id="apps">
-        <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Our Portfolio</span>
-                <h2>Apps built for <span class="grad">real use</span></h2>
-                <p>A growing lineup of Android apps designed around a single principle: do one thing well, and stay out of the way.</p>
-            </div>
-            <div class="filters">
-                <button class="filter active" data-filter="all">All Apps</button>
-                <button class="filter" data-filter="audio">Audio</button>
-                <button class="filter" data-filter="utility">Utility</button>
-                <button class="filter" data-filter="productivity">Productivity</button>
-            </div>
-            <div class="app-grid">
-                <div class="app-card" data-cat="audio">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/aiequalizer.png" alt="AI Equalizer icon" loading="lazy">
-                        <div>
-                            <h3>AI Equalizer</h3>
-                            <div class="tag">Smart Audio Tuning</div>
-                        </div>
-                    </div>
-                    <p class="desc">Adaptive equalizer that learns your listening habits and applies the right tuning for each track and genre automatically.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> 4.5</div>
-                        <div class="item">Android</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.aiequilizer&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="/privacy_aiequilizer.html">Privacy</a>
-                    </div>
-                </div>
+    <div class="stats reveal">
+      <div class="stat"><b class="grad">5+ yrs</b><span>building production systems</span></div>
+      <div class="stat"><b class="grad">500K</b><span>peak TPS on Go APIs I built</span></div>
+      <div class="stat"><b class="grad">5×</b><span>faster stream processing (PySpark → Go)</span></div>
+      <div class="stat"><b class="grad">$10K/mo</b><span>infra cost saved (Airflow → AWS)</span></div>
+    </div>
 
-                <div class="app-card" data-cat="audio">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/aimusicplayer.png" alt="AI Music Player icon" loading="lazy">
-                        <div>
-                            <h3>AI Music Player</h3>
-                            <div class="tag">Intelligent Playback</div>
-                        </div>
-                    </div>
-                    <p class="desc">Lightweight music player with adaptive playback, background scrobbling, and seamless library access on Android Auto.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> New</div>
-                        <div class="item">Android</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.aimusicplayer&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="/privacy_aimusicplayer.html">Privacy</a>
-                    </div>
-                </div>
-
-                <div class="app-card" data-cat="audio">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/sleepingsounds.png" alt="Sleeping Sounds icon" loading="lazy">
-                        <div>
-                            <h3>Sleeping Sounds</h3>
-                            <div class="tag">Rest & Relax</div>
-                        </div>
-                    </div>
-                    <p class="desc">Curated nature, ambient, and binaural sound mixes for sleep, focus, and meditation — with offline asset packs.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> 4.5</div>
-                        <div class="item">Android</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.sleepingsounds&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="/privacy_sleeping_sounds.html">Privacy</a>
-                    </div>
-                </div>
-
-                <div class="app-card" data-cat="utility">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/notch.png" alt="Notch icon" loading="lazy">
-                        <div>
-                            <h3>Notch</h3>
-                            <div class="tag">Interactive Notch Bar</div>
-                        </div>
-                    </div>
-                    <p class="desc">Turn the area around your camera cutout into a flexible action bar — quick gestures, lyrics, and live activities.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> 4.5</div>
-                        <div class="item">Android</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.notch&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="/privacy_notch.html">Privacy</a>
-                    </div>
-                </div>
-
-                <div class="app-card" data-cat="utility">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/blackscreen.png" alt="BlackScreen icon" loading="lazy">
-                        <div>
-                            <h3>BlackScreen</h3>
-                            <div class="tag">Screen Privacy</div>
-                        </div>
-                    </div>
-                    <p class="desc">Privacy-first black screen and biometric lock companion — keep your screen yours in public and shared spaces.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> 4.5</div>
-                        <div class="item">Android</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=com.arshilgenius.blackplay&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="/privacy_blackscreen.html">Privacy</a>
-                    </div>
-                </div>
-
-                <div class="app-card" data-cat="productivity">
-                    <div class="app-head">
-                        <img class="app-icon" src="assets/apps/dailyjobs.png" alt="DailyJobs.ai icon" loading="lazy">
-                        <div>
-                            <h3>DailyJobs.ai</h3>
-                            <div class="tag">AI Job Discovery</div>
-                        </div>
-                    </div>
-                    <p class="desc">AI-powered job search with auto-apply, CV review, and ATS scoring — find roles that match you and apply with one tap.</p>
-                    <div class="app-meta">
-                        <div class="item"><span class="star">★</span> 4.6</div>
-                        <div class="item">Android · Web</div>
-                    </div>
-                    <div class="app-links">
-                        <a class="app-link primary" href="https://play.google.com/store/apps/details?id=ai.dailyjobs.app&hl=en_IN" target="_blank" rel="noopener">Play Store</a>
-                        <a class="app-link" href="https://dailyjobs.ai" target="_blank" rel="noopener">Website</a>
-                    </div>
-                </div>
-            </div>
+    <!-- about -->
+    <section id="about" class="reveal">
+      <div class="sec-head"><span class="n">01.</span><h2>About me</h2><span class="rule"></span></div>
+      <div class="about">
+        <div>
+          <p>I'm a backend engineer at <b>Angel One</b>, India's third-largest stock broker, where I'm a core member of the <b>Charts team</b>. I work on the systems behind real-time market data and charts: streaming consumers, data workflows and the APIs that serve them.</p>
+          <p>Before that I was on the <b>Data Platform team at Innovaccer</b>. I migrated legacy healthcare data pipelines for 500+ providers with 100% data integrity, and built a query-conversion tool that translates between database DSLs.</p>
+          <p>Outside work I build and ship my own products. My Android apps have <b>200K+ installs</b>, and I'm building <b>DailyJobs.ai</b>, a job-search autofill and tracker. I started out in open source with <b>FOSSASIA</b> and competitive programming at <b>Jamia Millia Islamia</b>.</p>
         </div>
+        <dl class="facts">
+          <div><dt>role</dt><dd>SDE-2, Charts</dd></div>
+          <div><dt>company</dt><dd>Angel One</dd></div>
+          <div><dt>location</dt><dd>Mumbai, India</dd></div>
+          <div><dt>focus</dt><dd>Backend · Distributed systems</dd></div>
+          <div><dt>languages</dt><dd>Go · Python · Java · C++</dd></div>
+          <div><dt>education</dt><dd>B.Tech ECE, JMI</dd></div>
+          <div><dt>email</dt><dd><a href="mailto:me@arshilk.com" style="color:var(--accent)">me@arshilk.com</a></dd></div>
+        </dl>
+      </div>
     </section>
 
-    <section id="features">
-        <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Why Decibel</span>
-                <h2>Built with <span class="grad">excellence</span></h2>
-                <p>Every app we ship is crafted with the same hands-on engineering and product care.</p>
+    <!-- experience -->
+    <section id="experience" class="reveal">
+      <div class="sec-head"><span class="n">02.</span><h2>Where I've worked</h2><span class="rule"></span></div>
+      <div class="timeline">
+        <article class="job">
+          <div class="job-top">
+            <div>
+              <h3>Software Development Engineer <span class="at">@ Angel One</span></h3>
+              <div class="sub">Charts Team · Mumbai, India</div>
             </div>
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="ficon">◆</div>
-                    <h3>Quality First</h3>
-                    <p>Each app is profiled, optimized, and tested across real Android devices before it ships — smooth animations, low memory, no jank.</p>
-                </div>
-                <div class="feature">
-                    <div class="ficon">◈</div>
-                    <h3>Privacy Focused</h3>
-                    <p>Your data stays on your device. We don't sell or share personal information — every privacy policy spells out exactly what's collected.</p>
-                </div>
-                <div class="feature">
-                    <div class="ficon">▲</div>
-                    <h3>Lightweight & Fast</h3>
-                    <p>Small APK sizes, minimal background work, and battery-aware design. Our apps respect your phone's resources.</p>
-                </div>
-                <div class="feature">
-                    <div class="ficon">●</div>
-                    <h3>Regular Updates</h3>
-                    <p>Continuous improvement based on user feedback and new Android platform features — stability and polish ship every release.</p>
-                </div>
-                <div class="feature">
-                    <div class="ficon">◐</div>
-                    <h3>Thoughtful Design</h3>
-                    <p>Clean, accessible interfaces that follow Material guidelines and work well in light and dark mode out of the box.</p>
-                </div>
-                <div class="feature">
-                    <div class="ficon">◑</div>
-                    <h3>Responsive Support</h3>
-                    <p>Every app has in-app support chat. Real responses from the team that built it — usually within a day.</p>
-                </div>
+            <span class="when">Feb 2022 — Present</span>
+          </div>
+          <div class="roles"><span><b>SDE-2</b> · Apr 2025 — Present</span><span><b>SDE-1</b> · Feb 2022 — Mar 2025</span></div>
+          <ul>
+            <li>Core member of the Charts team, designing and building systems for India's <b>third-largest stock broker</b>.</li>
+            <li>Replaced PySpark consumers with <b>Go</b>, making processing <b>5× faster</b> and cutting latency for real-time data streams.</li>
+            <li>Led the migration of <b>hundreds of Airflow workflows</b> to AWS Schedulers, saving <b>~$10K USD/month</b> in operational cost.</li>
+            <li>Built REST APIs in Go that serve charts data at a peak of <b>500K TPS</b>.</li>
+          </ul>
+          <div class="tags"><span class="tag">Go</span><span class="tag">PySpark</span><span class="tag">Airflow</span><span class="tag">AWS</span><span class="tag">REST APIs</span></div>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <div>
+              <h3>Software Development Engineer I <span class="at">@ Innovaccer</span></h3>
+              <div class="sub">Data Platform Team · Noida, India</div>
             </div>
-        </div>
+            <span class="when">Jul 2020 — Feb 2022</span>
+          </div>
+          <ul>
+            <li>Core member of the Data Platform team for a leading healthcare data platform.</li>
+            <li>Led the migration of legacy systems to the new data platform with <b>100% data integrity</b> and no downtime for <b>500+ healthcare providers</b>.</li>
+            <li>Owned the data parsers and Python ETL pipelines, improving data workflows and system efficiency.</li>
+            <li>Built a <b>Query Conversion Tool</b> that translates queries between database DSLs.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">ETL</span><span class="tag">Data parsers</span><span class="tag">Query DSLs</span></div>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <div>
+              <h3>Android Developer Intern <span class="at">@ Jan Elaaj Healthcare</span></h3>
+              <div class="sub">New Delhi, India</div>
+            </div>
+            <span class="when">May 2018 — Jul 2018</span>
+          </div>
+          <ul><li>Built the Doctor and Patient Android apps from scratch.</li></ul>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <div>
+              <h3>Open Source Developer <span class="at">@ FOSSASIA</span></h3>
+              <div class="sub">Singapore · Remote</div>
+            </div>
+            <span class="when">Sep 2017 — Feb 2018</span>
+          </div>
+          <ul><li>Contributed to the <b>SUSI AI</b> Android app, an open-source AI personal assistant.</li></ul>
+        </article>
+      </div>
     </section>
 
-    <section id="about">
-        <div class="wrap">
-            <div class="about-grid">
-                <div>
-                    <span class="eyebrow">About</span>
-                    <h2>A one-person studio with <span class="grad">operator DNA</span></h2>
-                    <p class="lede">
-                        Decibel Studios is the name I publish my Android apps under — it's not a company, just a working
-                        name for my indie projects. Everything you see here is designed, engineered, and supported by me,
-                        Arshil Khan. No teams, no investors, no roadmap committees.
-                    </p>
-                    <ul class="about-list">
-                        <li><span class="check">✓</span> Six published Android apps across audio, utility, and productivity</li>
-                        <li><span class="check">✓</span> Active on Google Play since 2016</li>
-                        <li><span class="check">✓</span> Privacy-first — no third-party tracking beyond what's disclosed</li>
-                        <li><span class="check">✓</span> Solo-built and personally supported by the same person who shipped it</li>
-                    </ul>
-                </div>
-                <div class="about-card">
-                    <div class="about-stats">
-                        <div class="about-stat">
-                            <div class="num">6+</div>
-                            <div class="lbl">Apps in Production</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="num">★ 4.5</div>
-                            <div class="lbl">Avg User Rating</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="num">9+</div>
-                            <div class="lbl">Years Active</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="num">1</div>
-                            <div class="lbl">Person Studio</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- skills -->
+    <section id="skills" class="reveal">
+      <div class="sec-head"><span class="n">//</span><h2>Tech stack</h2><span class="rule"></span></div>
+      <div class="skills">
+        <div class="skill-card">
+          <h3>$ languages</h3>
+          <div class="chips"><span class="chip">Go</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">Scala</span><span class="chip">C</span><span class="chip">Node.js</span><span class="chip">Bash</span></div>
         </div>
+        <div class="skill-card">
+          <h3>$ data</h3>
+          <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">TimescaleDB</span><span class="chip">Redis</span><span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">Snowflake</span><span class="chip">Kafka</span><span class="chip">Apache Spark</span><span class="chip">ElasticSearch</span></div>
+        </div>
+        <div class="skill-card">
+          <h3>$ infra</h3>
+          <div class="chips"><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">ArgoCD</span><span class="chip">Grafana</span><span class="chip">Prometheus</span><span class="chip">Graylog</span><span class="chip">Linux</span></div>
+        </div>
+        <div class="skill-card">
+          <h3>$ architecture</h3>
+          <div class="chips"><span class="chip">Microservices</span><span class="chip">SOA</span><span class="chip">Event streaming</span><span class="chip">REST APIs</span><span class="chip">ETL pipelines</span></div>
+        </div>
+        <div class="skill-card">
+          <h3>$ practices</h3>
+          <div class="chips"><span class="chip">TDD</span><span class="chip">A/B testing</span><span class="chip">Observability</span><span class="chip">Algorithms &amp; DS</span><span class="chip">Git</span></div>
+        </div>
+        <div class="skill-card">
+          <h3>$ mobile &amp; web</h3>
+          <div class="chips"><span class="chip">Android</span><span class="chip">Real-time DSP</span><span class="chip">Chrome Extensions</span><span class="chip">Django</span></div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact">
-        <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Get In Touch</span>
-                <h2>Let's <span class="grad">connect</span></h2>
-                <p>Have feedback, a support question, or a business inquiry? We'd love to hear from you.</p>
-            </div>
-            <div class="contact-grid">
-                <form class="contact-card" action="mailto:me@arshilk.com" method="post" enctype="text/plain">
-                    <div class="form-row">
-                        <div class="field">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" type="text" placeholder="Your name" required>
-                        </div>
-                        <div class="field">
-                            <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="you@example.com" required>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject">
-                            <option>App Support</option>
-                            <option>Business Inquiry</option>
-                            <option>Feedback</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Send Message →</button>
-                </form>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="ci-icon">✉</div>
-                        <h4>Email Us</h4>
-                        <p style="margin-bottom: 8px;">For support or inquiries</p>
-                        <a href="mailto:me@arshilk.com">me@arshilk.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="ci-icon">▶</div>
-                        <h4>Google Play</h4>
-                        <p style="margin-bottom: 8px;">All our apps in one place</p>
-                        <a href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">View Developer Page →</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="ci-icon">⏱</div>
-                        <h4>Response Time</h4>
-                        <p>We typically respond within 24–48 hours. For urgent app issues, include your device model and app version.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- projects -->
+    <section id="projects" class="reveal">
+      <div class="sec-head"><span class="n">03.</span><h2>Things I've built</h2><span class="rule"></span></div>
+      <div class="projects">
+        <article class="proj">
+          <div class="proj-top">
+            <img src="/assets/apps/dailyjobs.png" alt="" loading="lazy">
+            <div><h3>DailyJobs.ai</h3><div class="kind">Chrome extension · Android · Web</div></div>
+          </div>
+          <p>A job-search assistant: it autofills applications on job portals and tracks every application in one place.</p>
+          <div class="tags"><span class="tag">Chrome Extension</span><span class="tag">Android</span><span class="tag">Web</span></div>
+          <div class="links"><a href="https://dailyjobs.ai" target="_blank" rel="noopener">dailyjobs.ai ↗</a><a href="https://play.google.com/store/apps/details?id=ai.dailyjobs.app&hl=en_IN" target="_blank" rel="noopener">Play Store ↗</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-top">
+            <img src="/assets/apps/aiequalizer.png" alt="" loading="lazy">
+            <div><h3>AI Equalizer</h3><div class="kind">Native Android · Audio DSP</div></div>
+          </div>
+          <p>An audio enhancement app with 5–31 band equalizers, bass boost, a volume amplifier and real-time DSP (limiter, loudness enhancer). It has presets for 10,000+ headphones and is localized into 50+ languages.</p>
+          <div class="metrics"><span><b>200K+</b> installs</span><span><b>4.7★</b> from 4K+ reviews</span><span><b>100+</b> countries</span></div>
+          <div class="links"><a href="https://play.google.com/store/apps/details?id=com.arshilgenius.aiequilizer&hl=en_IN" target="_blank" rel="noopener">Play Store ↗</a></div>
+        </article>
+      </div>
+      <div class="more-apps">
+        <div class="icons">
+          <img src="/assets/apps/aimusicplayer.png" alt="" loading="lazy">
+          <img src="/assets/apps/sleepingsounds.png" alt="" loading="lazy">
+          <img src="/assets/apps/notch.png" alt="" loading="lazy">
+          <img src="/assets/apps/blackscreen.png" alt="" loading="lazy">
         </div>
+        <span>Plus more Android apps: AI Music Player, Sleeping Sounds, Notch, Black Screen and others.</span>
+        <a href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">all apps ↗</a>
+      </div>
     </section>
 
-    <footer>
-        <div class="wrap">
-            <div class="foot-grid">
-                <div class="foot-brand">
-                    <a href="#top" class="brand">
-                        <span class="logo">D</span>
-                        Decibel Studios
-                    </a>
-                    <p>The working name for the indie Android apps I build solo. Not a company — just one developer (Arshil Khan) shipping focused apps for audio, utility, and productivity.</p>
-                </div>
-                <div class="foot-col">
-                    <h5>Quick Links</h5>
-                    <a href="#apps">Apps</a>
-                    <a href="#features">Features</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                    <a href="/resume">Resume</a>
-                </div>
-                <div class="foot-col">
-                    <h5>Connect</h5>
-                    <a href="mailto:me@arshilk.com">me@arshilk.com</a>
-                    <a href="https://play.google.com/store/apps/dev?id=4716231964355243705&hl=en_IN" target="_blank" rel="noopener">Google Play</a>
-                    <a href="https://www.youtube.com/@decibel.studios" target="_blank" rel="noopener">YouTube</a>
-                    <a href="https://www.instagram.com/decibel_studios_" target="_blank" rel="noopener">Instagram</a>
-                </div>
-            </div>
-            <div class="foot-bottom">
-                <div>© <span id="y"></span> Arshil Khan, publishing as Decibel Studios. All rights reserved.</div>
-                <div>
-                    <a href="/privacy.html">Privacy Policy</a>
-                </div>
-            </div>
+    <!-- achievements + education -->
+    <section id="achievements" class="reveal">
+      <div class="sec-head"><span class="n">//</span><h2>Awards &amp; education</h2><span class="rule"></span></div>
+      <div class="two">
+        <div class="panel">
+          <h3>$ cat awards.log</h3>
+          <ul class="awards">
+            <li><span class="ic">🏆</span><div>Tech Titan Award<small>Angel One · 2023</small></div></li>
+            <li><span class="ic">⭐</span><div>Leading by Example Award<small>Innovaccer · 2021</small></div></li>
+            <li><span class="ic">🥇</span><div>Champion of the Quarter<small>Innovaccer · Q4 2020</small></div></li>
+            <li><span class="ic">🇮🇳</span><div>National Finalist, Smart India Hackathon<small>2018</small></div></li>
+            <li><span class="ic">🥇</span><div>1st place, Open Govt Data Hack<small>2017</small></div></li>
+            <li><span class="ic">🥇</span><div>1st place, DCB Bank FinTech Hackathon<small>2017</small></div></li>
+            <li><span class="ic">⌨️</span><div>1st place, Code-Fuze (competitive programming)<small>Jamia Spring Fest · 2018</small></div></li>
+          </ul>
         </div>
-    </footer>
+        <div class="panel edu">
+          <h3>$ cat education.md</h3>
+          <h4>Jamia Millia Islamia</h4>
+          <div class="deg">B.Tech, Electronics &amp; Communication Engineering</div>
+          <div class="meta">New Delhi · 2016 — 2020</div>
+          <div class="cpi">
+            <div class="lbl"><span>CPI</span><b>9.58 / 10</b></div>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="oss">
+            <h3>$ cat open-source.md</h3>
+            <div class="deg">FOSSASIA: SUSI AI Android (2017–18)<br>Jamia Connect: a student app with notes, forum, marketplace and maps</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        document.getElementById('y').textContent = new Date().getFullYear();
+    <!-- writing -->
+    <section id="writing" class="reveal">
+      <div class="sec-head"><span class="n">04.</span><h2>Blog</h2><span class="rule"></span></div>
+      <div class="posts">
+        <article class="post"><span class="soon">soon</span><div class="topic">// performance</div><h3>Rewriting PySpark consumers in Go</h3><p>What changed and what we measured on real-time market data streams.</p></article>
+        <article class="post"><span class="soon">soon</span><div class="topic">// infrastructure</div><h3>Moving hundreds of Airflow DAGs to AWS Schedulers</h3><p>How the migration went, and the ~$10K/month it saved.</p></article>
+        <article class="post"><span class="soon">soon</span><div class="topic">// indie dev</div><h3>Shipping Android apps to 200K+ users on the side</h3><p>Notes on building, localizing and growing small apps.</p></article>
+      </div>
+      <p class="writing-note">Posts are on the way. Until then I share updates on <a href="https://www.linkedin.com/in/arshilk" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+    </section>
 
-        const filters = document.querySelectorAll('.filter');
-        const cards = document.querySelectorAll('.app-card');
-        filters.forEach(f => {
-            f.addEventListener('click', () => {
-                filters.forEach(x => x.classList.remove('active'));
-                f.classList.add('active');
-                const cat = f.dataset.filter;
-                cards.forEach(c => {
-                    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
-                });
-            });
-        });
-    </script>
+    <!-- contact -->
+    <section id="contact" class="reveal">
+      <div class="contact">
+        <span class="sec-head" style="justify-content:center;margin:0"><span class="n">05.</span><span class="mono muted" style="font-size:15px">What's next?</span></span>
+        <h2>Let's build something <span class="grad">fast</span>.</h2>
+        <p>Have a role, a project or a hard backend problem? My inbox is open.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:me@arshilk.com?subject=Hello%20Arshil">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Say hello</a>
+          <a class="btn" href="https://www.linkedin.com/in/arshilk" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+        <div class="copy"><span>me@arshilk.com</span><button type="button" id="copyBtn">copy</button></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="mono">© <span id="y"></span> Arshil Khan · built by hand, no frameworks</div>
+      <div class="flinks">
+        <a href="https://www.linkedin.com/in/arshilk" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/arshilk" target="_blank" rel="noopener">GitHub</a>
+        <a href="/resume">Resume</a>
+        <a href="mailto:me@arshilk.com">Email</a>
+      </div>
+    </div>
+    <details class="legal">
+      <summary>App privacy policies &amp; legal</summary>
+      <div class="list">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/privacy_aiequilizer.html">AI Equalizer</a>
+        <a href="/privacy_aiequilizerextension.html">AI Equalizer (Chrome)</a>
+        <a href="/privacy_aimusicplayer.html">AI Music Player</a>
+        <a href="/privacy_sleeping_sounds.html">Sleeping Sounds</a>
+        <a href="/privacy_notch.html">Notch</a>
+        <a href="/privacy_blackscreen.html">Black Screen</a>
+        <a href="/privacy_blackplay.html">BlackPlay</a>
+        <a href="/privacy_dailyjobsextension.html">DailyJobs (Chrome)</a>
+        <a href="/dailyjobs/terms.html">DailyJobs Terms</a>
+        <a href="/dailyjobs/delete-account.html">DailyJobs: delete account</a>
+      </div>
+    </details>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // nav
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
+  var menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', function (e) { if (e.target.closest('a')) links.classList.remove('open'); });
+
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // typed role
+  var roles = ['Backend Engineer', 'Go · Python · Distributed Systems', 'Real-time data at scale', 'Indie app builder'];
+  var el = document.getElementById('typed'), ri = 0, ci = 0, del = false;
+  function type() {
+    var w = roles[ri];
+    el.textContent = w.slice(0, ci);
+    if (!del && ci < w.length) { ci++; setTimeout(type, 65); }
+    else if (!del) { del = true; setTimeout(type, 1600); }
+    else if (ci > 0) { ci--; setTimeout(type, 30); }
+    else { del = false; ri = (ri + 1) % roles.length; setTimeout(type, 300); }
+  }
+  if (reduce) el.textContent = roles[0]; else type();
+
+  // terminal
+  var lines = [
+    ['cmd', 'whoami'],
+    ['out', '<span class="k">arshil_khan</span> · sde-2 @ angel-one'],
+    ['cmd', 'cat stack.yaml'],
+    ['out', '<span class="c">lang</span>:  [<span class="s">go</span>, <span class="s">python</span>, <span class="s">java</span>, <span class="s">c++</span>]'],
+    ['out', '<span class="c">data</span>:  [<span class="s">kafka</span>, <span class="s">postgres</span>, <span class="s">redis</span>]'],
+    ['out', '<span class="c">infra</span>: [<span class="s">aws</span>, <span class="s">k8s</span>, <span class="s">argocd</span>]'],
+    ['cmd', 'curl -s api/charts/metrics'],
+    ['out', '{ <span class="c">"peak_tps"</span>: <span class="k">500000</span>, <span class="c">"speedup"</span>: <span class="s">"5x"</span> }'],
+    ['cmd', 'uptime'],
+    ['out', '5+ years shipping to production ✓']
+  ];
+  var term = document.getElementById('term');
+  function render(n, partial) {
+    var html = '';
+    for (var i = 0; i < n; i++) {
+      var l = lines[i];
+      html += l[0] === 'cmd'
+        ? '<div><span class="pr">$</span> <span class="cmd">' + l[1] + '</span></div>'
+        : '<div class="out">' + l[1] + '</div>';
+    }
+    if (partial !== undefined) html += '<div><span class="pr">$</span> <span class="cmd">' + partial + '</span><span class="caret" style="display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite"></span></div>';
+    term.innerHTML = html;
+  }
+  if (reduce) { render(lines.length, ''); }
+  else {
+    var li = 0;
+    (function next() {
+      if (li >= lines.length) { render(lines.length, ''); return; }
+      var l = lines[li];
+      if (l[0] === 'out') { li++; render(li); setTimeout(next, 140); return; }
+      var k = 0;
+      (function typeCmd() {
+        if (k <= l[1].length) { render(li, l[1].slice(0, k)); k++; setTimeout(typeCmd, 45); }
+        else { li++; render(li); setTimeout(next, 260); }
+      })();
+    })();
+  }
+
+  // reveal on scroll
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .08 });
+    els.forEach(function (e) { io.observe(e); });
+  } else els.forEach(function (e) { e.classList.add('in'); });
+
+  // copy email
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var b = this;
+    function done() { b.textContent = 'copied ✓'; setTimeout(function () { b.textContent = 'copy'; }, 1500); }
+    if (navigator.clipboard) navigator.clipboard.writeText('me@arshilk.com').then(done, function () {});
+  });
+})();
+</script>
 <script defer src="https://site-analytics.dailyjobs.workers.dev/a.js" data-site="arshilk.com"></script>
 </body>
 </html>
