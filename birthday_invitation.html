@@ -9,26 +9,26 @@
 <meta property="og:url" content="https://arshilk.com/birthday_invitation.html">
 <meta property="og:title" content="💌 You're invited to Buraq's Birthday!">
 <meta property="og:description" content="Thursday, 29 October 2026 · Tap to open your invitation 🎉">
-<meta property="og:image" content="https://arshilk.com/assets/birthday/buraq_invite_og.png">
+<meta property="og:image" content="https://arshilk.com/assets/birthday/buraq_invite_og_blue.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1b1033">
+<meta name="theme-color" content="#0b1a3a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg1: #1b1033;
-    --bg2: #3a1650;
-    --gold: #e7b75f;
-    --gold-2: #f6dc9c;
-    --env: #f3e3c3;
-    --env-dark: #e2cca2;
-    --env-shadow: #c9ae7c;
-    --seal: #b3243b;
-    --ink: #3b2340;
-    --card: #fffaf0;
+    --bg1: #0b1a3a;
+    --bg2: #16336e;
+    --gold: #6fa8ef;
+    --gold-2: #cfe4ff;
+    --env: #e8f0fb;
+    --env-dark: #c9daf2;
+    --env-shadow: #a9c2e6;
+    --seal: #1f5fbf;
+    --ink: #14284d;
+    --card: #f7fbff;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; }
@@ -60,7 +60,7 @@
   .to {
     color: var(--gold-2); font-family: 'Great Vibes', cursive;
     font-size: clamp(30px, 8vw, 44px); margin-bottom: 28px; text-align: center;
-    text-shadow: 0 2px 12px rgba(231,183,95,.35);
+    text-shadow: 0 2px 12px rgba(111,168,239,.35);
   }
   .envelope {
     --w: min(86vw, 380px);
@@ -82,7 +82,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.12);
     transition: transform 1s cubic-bezier(.2,.8,.2,1) .55s;
   }
-  .letter small { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #9a7a4a; }
+  .letter small { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #5a7aa8; }
   .letter b { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(32px, 9vw, 44px); color: var(--seal); line-height: 1.1; }
   .envelope.open .letter { transform: translateY(-62%); }
 
@@ -96,7 +96,7 @@
   .pocket-l, .pocket-r, .pocket-b { position: absolute; inset: 0; }
   .pocket-l { background: var(--env); clip-path: polygon(0 0, 52% 55%, 0 100%); }
   .pocket-r { background: var(--env); clip-path: polygon(100% 0, 48% 55%, 100% 100%); }
-  .pocket-b { background: linear-gradient(#f0dcb6, var(--env)); clip-path: polygon(0 100%, 50% 45%, 100% 100%); }
+  .pocket-b { background: linear-gradient(#dde8f8, var(--env)); clip-path: polygon(0 100%, 50% 45%, 100% 100%); }
 
   .flap {
     position: absolute; left: 0; right: 0; top: 0; height: 58%; z-index: 4;
@@ -120,15 +120,15 @@
   .seal {
     position: absolute; left: 50%; top: 58%; z-index: 5;
     width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #d8435a, var(--seal) 55%, #7d1426);
+    background: radial-gradient(circle at 35% 30%, #4a8be8, var(--seal) 55%, #0f3478);
     box-shadow: 0 4px 10px rgba(0,0,0,.35), inset 0 -3px 6px rgba(0,0,0,.25);
     display: grid; place-items: center;
-    color: #f8d6a0; font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700;
+    color: #eaf3ff; font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700;
     transition: transform .45s ease, opacity .45s ease;
   }
   .seal::before {
     content: ""; position: absolute; inset: 6px; border-radius: 50%;
-    border: 2px dashed rgba(248,214,160,.45);
+    border: 2px dashed rgba(234,243,255,.45);
   }
   .envelope.open .seal { transform: scale(1.4) rotate(25deg); opacity: 0; }
 
@@ -162,7 +162,7 @@
   }
   .card::after {
     content: ""; position: absolute; inset: 15px; border-radius: 9px;
-    border: 1px solid rgba(231,183,95,.45); pointer-events: none;
+    border: 1px solid rgba(111,168,239,.45); pointer-events: none;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(60px) scale(.92); } to { opacity: 1; transform: none; } }
 
@@ -183,7 +183,7 @@
   .balloons span:nth-child(3) { animation-delay: .8s; }
   @keyframes bob { 50% { transform: translateY(-8px) rotate(4deg); } }
 
-  .eyebrow { margin-top: 14px; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #9a7a4a; }
+  .eyebrow { margin-top: 14px; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #5a7aa8; }
   .name {
     font-family: 'Great Vibes', cursive; font-size: clamp(54px, 15vw, 72px);
     color: var(--seal); line-height: 1.05; margin: 6px 0 2px;
@@ -197,18 +197,18 @@
   .date-box div { padding: 6px 16px; display: flex; flex-direction: column; justify-content: center; }
   .date-box .mid { border-left: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
   .date-box .day { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--ink); line-height: 1; }
-  .date-box .lbl { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #6b5470; font-weight: 600; }
+  .date-box .lbl { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #4d6488; font-weight: 600; }
 
   .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
   .countdown div {
-    background: linear-gradient(160deg, #3a1650, #1b1033); color: var(--gold-2);
+    background: linear-gradient(160deg, #16336e, #0b1a3a); color: var(--gold-2);
     border-radius: 12px; min-width: 64px; padding: 10px 6px;
   }
   .countdown b { display: block; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .countdown small { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: .8; }
   .countdown.done { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--seal); }
 
-  .msg { margin-top: 24px; font-size: 15px; line-height: 1.7; color: #5a4560; }
+  .msg { margin-top: 24px; font-size: 15px; line-height: 1.7; color: #44597c; }
   .msg strong { color: var(--ink); }
 
   .actions { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 2; }
@@ -217,7 +217,7 @@
     border: 0; border-radius: 999px; padding: 13px 18px; font: 600 15px 'Poppins', sans-serif;
     cursor: pointer; text-decoration: none;
   }
-  .btn.primary { background: linear-gradient(135deg, #c9374f, #8f1d33); color: #fff; box-shadow: 0 8px 18px rgba(179,36,59,.35); }
+  .btn.primary { background: linear-gradient(135deg, #2f74d6, #174a9c); color: #fff; box-shadow: 0 8px 18px rgba(31,95,191,.35); }
   .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--gold); }
   .btn:active { transform: scale(.98); }
 
@@ -269,7 +269,7 @@
         <div><span class="lbl">Oct<br>2026</span></div>
       </div>
       <div class="countdown" id="countdown" aria-live="polite"></div>
-      <p class="msg">Come and share the cake, the fun and lots of smiles.<br><strong>Your presence is the best gift!</strong> 💛</p>
+      <p class="msg">Come and share the cake, the fun and lots of smiles.<br><strong>Your presence is the best gift!</strong> 💙</p>
       <div class="actions">
         <a class="btn primary" id="calBtn" href="#">📅 Add to Calendar</a>
         <button class="btn ghost" id="shareBtn" type="button">💬 Share on WhatsApp</button>
@@ -340,7 +340,7 @@
     if (diff <= 0) {
       var endOfDay = new Date(2026, 9, 30);
       el.className = 'countdown done';
-      el.textContent = new Date() < endOfDay ? "🎉 It's party day! 🎉" : 'Thank you for celebrating with us! 💛';
+      el.textContent = new Date() < endOfDay ? "🎉 It's party day! 🎉" : 'Thank you for celebrating with us! 💙';
       return;
     }
     var d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
@@ -374,7 +374,7 @@
   // confetti
   var cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
   var parts = [], running = false;
-  var colors = ['#e7b75f', '#f6dc9c', '#b3243b', '#ff7aa2', '#8ad4ff', '#b78cff', '#ffffff'];
+  var colors = ['#6fa8ef', '#cfe4ff', '#1f5fbf', '#3d8bff', '#8ad4ff', '#9fc5ff', '#ffffff'];
   function resize() { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; }
   addEventListener('resize', resize); resize();
   function burst() {
